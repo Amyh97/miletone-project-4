@@ -1,0 +1,30 @@
+body {
+    overflow-x: hidden;
+    font-family: 'Lato', sans-serif;
+}
+/*--- base.html header ---*/
+
+.title {
+    font-family: 'Satisfy', cursive;
+    text-align: center;
+    font-size: 52px;
+    color: #0d47a1;
+}
+
+.nav-link i {
+    color: #0d47a1;
+}
+
+.navbar-toggler {
+    width: 25%;
+}
+footer {
+    margin: 5px;
+    padding: 5px;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+
