@@ -51,7 +51,7 @@
     <header>
         <!-- bootstrap navbar with row, h1 and cols added -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid row h-100">
+            <div class="container-fluid row no-gutters h-100">
                 <div class="col-md-2 my-auto">
                     <a class="navbar-brand" href="{% url 'home' %}">Logo here</a>
                 </div>
@@ -60,7 +60,7 @@
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="col-md-4 d-none d-lg-block my-auto">
+                <div class="col-md-5 d-none d-lg-block my-auto">
                     <h1 class="title">Amy Hollis Photography</h1>
                 </div>
                 <div class="col-md-5 offset-md-1 my-auto">
@@ -117,16 +117,18 @@
 
     {% endblock %}
 
+    <div class="my-container">
+        <div class="backround-img"></div>
+        {% block content %}
 
-    {% block content %}
-
-    {% endblock %}
+        {% endblock %}
+    </div>
     
     <footer>
         <div class="row bg-light">
-            <div class="col-md-4"><p class="text-muted"><i class="far fa-copyright"></i> Amy Hollis 2021</p> </div>
-            <div class="col-md-4"></div>
-            <div class="col-md-4"><i class="fab fa-flickr text-muted"></i> <a href="https://www.flickr.com/photos/amyholllis2012/" class="text-muted">Follow on Flickr</a></div>
+            <div class="col-md-4 col-sm-5"><p><i class="far fa-copyright"></i> Amy Hollis 2021</p> </div>
+            <div class="col-md-4 col-sm-0"></div>
+            <div class="col-md-4 col-sm-5"><i class="fab fa-flickr"></i> <a href="https://www.flickr.com/photos/amyholllis2012/" target="_blank" class="text-muted">Follow on Flickr</a></div>
         </div>
     </footer>
 
