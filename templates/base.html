@@ -88,7 +88,7 @@
                                             <li><a class="dropdown-item" href="#">Manage content</a></li>
                                         {% endif %}
                                         <!-- if user is a customer -->
-                                        <li><a class="dropdown-item" href="#">My Account</a></li>
+                                        <li><a class="dropdown-item" href="{% url 'profile' %}">My Account</a></li>
                                         <!-- url from Django allauth -->
                                         <li><a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a></li>
                                     {% else %}
@@ -128,7 +128,7 @@
         <div class="row bg-light">
             <div class="col-md-4 col-sm-5"><p><i class="far fa-copyright"></i> Amy Hollis 2021</p> </div>
             <div class="col-md-4 col-sm-0"></div>
-            <div class="col-md-4 col-sm-5"><i class="fab fa-flickr"></i> <a href="https://www.flickr.com/photos/amyholllis2012/" target="_blank" class="text-muted">Follow on Flickr</a></div>
+            <div class="col-md-4 col-sm-5"><i class="fab fa-flickr"></i> <a href="https://www.flickr.com/photos/amyholllis2012/" target="_blank">Follow on Flickr</a></div>
         </div>
     </footer>
 

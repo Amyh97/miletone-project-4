@@ -36,9 +36,6 @@ body {
     z-index: -1;
 }
 
-.my-btn {
-    background-color: #0d47a1;
-}
 
 /*--- base.html footer ---*/
 footer {
@@ -53,6 +50,7 @@ footer {
 
 footer a {
     text-decoration: none;
+    color: #000000;
 }
 
 
@@ -61,4 +59,18 @@ footer a {
 .account {
     background-color: rgba(255, 255, 255, 0.5);
     padding-bottom: 10px;
+}
+
+/*--- reused elements ---*/
+
+.my-btn {
+    background-color: #0d47a1;
+}
+
+.sub-title {
+   font-family: 'Satisfy', cursive;
+    text-align: center;
+    font-size: 48px;
+    color: #0d47a1;
+    margin-top: 1.5rem;
 }
