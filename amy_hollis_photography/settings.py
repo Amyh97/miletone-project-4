@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     # project apps
-    'home'
+    'home',
+    'profiles'
 ]
 
 MIDDLEWARE = [
@@ -136,7 +137,7 @@ AUTH_PASSWORD_VALIDATORS = [
             .CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validationz\
+        'NAME': 'django.contrib.auth.password_validation\
             .NumericPasswordValidator',
     },
 ]
