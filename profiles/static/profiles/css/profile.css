@@ -1,8 +1,20 @@
-#profile-form-heading, #profile-form {
-    padding: 1.25rem;
+#profile-form-heading {
+    padding-left: 1.25rem;
+    padding-bottom: 1rem;
+    padding-top: 1.25rem;
     font: 50px;
+    
+}
+
+#profile-form {
+    padding-left: 1.25rem;
+    width: 80%;
+}
+
+#profile-form button {
+    margin-top: 10px;
 }
 
 .profile-form-input {
-    padding-top: 3px;
+    padding-top: 5px;
 }
