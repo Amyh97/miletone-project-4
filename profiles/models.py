@@ -22,19 +22,30 @@ class UserProfile(models.Model):
     )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # use null = True and blank = True to make optional
+
+    default_name = models.CharField(max_length=25, null=False, blank=False,
+                                    default='')
+    # email is required by default
+    default_email = models.EmailField(max_length=254, null=False, blank=False,
+                                      default='')
     default_contact_number = models.CharField(validators=[phone_regex],
-                                              max_length=60, null=True,
-                                              blank=True)
-    default_street_address1 = models.CharField(max_length=80, null=True,
-                                               blank=True)
+                                              max_length=60, null=False,
+                                              blank=False, default='')
+
+    default_street_address1 = models.CharField(max_length=80, null=False,
+                                               blank=False, default='')
+
     default_street_address2 = models.CharField(max_length=80, null=True,
                                                blank=True)
-    default_town = models.CharField(max_length=40, null=True,
-                                    blank=True)
+
+    default_town = models.CharField(max_length=40, null=False,
+                                    blank=False, default='')
+
     default_postcode = models.CharField(max_length=10, null=True,
                                         blank=True)
-    default_counrty = CountryField(blank_label='Country', null=True,
-                                   blank=True)
+
+    default_counrty = CountryField(blank_label='Country *', null=False,
+                                   blank=False)
 
     def __str__(self):
         return self.user

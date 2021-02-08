@@ -16,6 +16,8 @@ class ProfileForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         # not conurty as this is set in model
         placeholders = {
+            'default_name': 'Full name',
+            'default_email': 'Email address',
             'default_contact_number': 'Phone number',
             'default_street_address1': 'Address Line 1',
             'default_street_address2': 'Address Line 2',
@@ -24,7 +26,7 @@ class ProfileForm(forms.ModelForm):
         }
 
         # start cursor on first field of form
-        self.fields['default_contact_number'].widget.attrs['autofocus'] = True
+        self.fields['default_name'].widget.attrs['autofocus'] = True
         # use place holders except counrty
         for field in self.fields:
             if field != 'default_counrty':
