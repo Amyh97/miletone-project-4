@@ -1,0 +1,8 @@
+#profile-form-heading, #profile-form {
+    padding: 1.25rem;
+    font: 50px;
+}
+
+.profile-form-input {
+    padding-top: 3px;
+}
