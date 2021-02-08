@@ -13,6 +13,19 @@ body {
     color: #0d47a1;
 }
 
+header {
+    height: 88px;
+    overflow: hidden;
+}
+
+.logo {
+    background: url('/media/logo.png') no-repeat;
+    background-size: contain;
+    height: 86px;
+    display: block;
+    margin-left: 3.25rem;
+}
+
 .nav-link i {
     color: #0d47a1;
 }
