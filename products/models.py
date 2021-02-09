@@ -2,13 +2,24 @@ from django.db import models
 
 
 class categories(models.Model):
+    class Meta:
+        verbose_name_plural = 'Categories'
+
     name = models.CharField(max_length=20)
+    friendly_name = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
         return self.name
 
+    def use_friendly_name(self):
+        return self.friendly_name
+
 
 class products(models.Model):
+    # meta class to edit how it looks in django admin panel
+    class Meta:
+        verbose_name_plural = 'Products'
+
     name = models.CharField(max_length=50)
     category = models.ForeignKey('categories', null=True,
                                  blank=True, on_delete=models.SET_NULL)
@@ -21,6 +32,9 @@ class products(models.Model):
 
 
 class sizes(models.Model):
+    class Meta:
+        verbose_name_plural = 'Sizes'
+
     # both required fields as needed for pricing
     sizes = models.CharField(max_length=10)
     # 2 decimal places, like currency is written
@@ -31,6 +45,9 @@ class sizes(models.Model):
 
 
 class finish(models.Model):
+    class Meta:
+        verbose_name_plural = 'Finishes'
+
     # both required fields as needed for pricing
     finish = models.CharField(max_length=10)
     # 2 decimal places, like currency is written
