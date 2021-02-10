@@ -1,0 +1,7 @@
+.photos {
+    clear:both;
+    line-height:0;
+    column-count:5;
+    columns: gap 2px;;
+}
+
