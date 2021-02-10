@@ -1,7 +1,10 @@
 .photos {
     clear:both;
     line-height:0;
-    column-count:5;
+    column-count:4;
     columns: gap 2px;;
 }
 
+.pagination li {
+    padding: 3px;
+}
