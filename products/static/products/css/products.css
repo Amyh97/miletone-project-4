@@ -1,3 +1,4 @@
+/*--- products page ---*/
 .photos {
     clear:both;
     line-height:0;
@@ -5,6 +6,28 @@
     columns: gap 2px;;
 }
 
+.pagination {
+    margin-bottom: 3rem;
+}
+
 .pagination li {
     padding: 3px;
+}
+
+.pagination li a {
+    color: #fff;
+    font-size: 18px;
+}
+
+.active span {
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+/*--- product detail page ---*/
+
+.product-image {
+    width: 75%;
+    border: 2px solid #fff;
 }

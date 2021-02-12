@@ -16,6 +16,9 @@ body {
 header {
     height: 88px;
     overflow: hidden;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
 }
 
 .logo {
@@ -37,12 +40,15 @@ header {
 /*--- body height and background ---*/
 .my-container {
     height: calc(100vh - 88px);
-}
-.backround-img {
-    height: calc(100vh - 88px);
-    background: url('/media/background.jpg') no-repeat center center fixed;
-    opacity: 0.7;
     position: absolute;
+    top: 88px;  /*-- 88px is height of header ---*/
+}
+
+.backround-img {
+    height: 100%;
+    background: url('/media/background.jpg') no-repeat fixed center;
+    opacity: 0.7;
+    position: fixed;
     top: 86px;
     left: 0;
     width: 100%;

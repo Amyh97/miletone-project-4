@@ -20,8 +20,8 @@
                     {% for product in products %}
                     <!-- bootsrtap card element, swapped paragraph for header and added a tag to image -->
                     <div class="card" style="width: 18rem;">
-                        <a href="#">
-                            <img src="media/{{ product.image }}" class="card-img-top" alt="{{ product.name }}">
+                        <a href="{% url 'product_detail' product.id %}">
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
@@ -55,7 +55,6 @@
                     {% endif %}
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="row h-100">
+        <div class="col-sm-12 col-md-3 offset-md-1 mt-5">
+            <img src="media/{{ product.image }}" alt="{{ product.name }}" class="my-auto product-image">
+        </div>
+        <div class="col-sm-12 col-md-3 mt-5">
+            <h2 class="text-capitalize">{{ product.name }}</h2>
+            <p>Date of capture: {{ product.date }}</p>
+            <p>Description: {{ product.description }}</p>
+            <form>
+                <p><strong>Size:</strong></p>
+                <select class="form-control rounded-0 w-50">
+                    <option value="" disabled selected>-Select size-</option>
+                    {% for size in sizes %}
+                    <option value="{{ size.sizes }}">{{ size.sizes }}</option>
+                    {% endfor %}
+                </select>
+                <p class="mt-5"><strong>Finish:</strong></p>
+                <select class="form-control rounded-0 w-50">
+                    <option value="" disabled selected>-Select Finish-</option>
+                    {% for finish in finishes %}
+                    <option value="{{ finish.finish}}">{{ finish.finish }}</option>
+                    {% endfor %}
+                </select>
+                <button class="btn my-btn text-light mt-5">Calculate Price</button>
+            </form>
+        </div>
+        <div class="col-sm-12 col-md-3 mt-5">
+            <form>
+                <!-- quantity for add to bag-->
+            </form>
+            <a href="{% url 'products' %}" class="btn my-btn text-light"><i class="fas fa-arrow-left"></i> Keep Shopping</a>
+        </div>
+    </div>
+{% endblock %}
