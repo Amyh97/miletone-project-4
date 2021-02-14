@@ -6,36 +6,54 @@
 
 {% block content %}
     <div class="row h-100">
-        <div class="col-sm-12 col-md-3 offset-md-1 mt-5">
+        <div class="col-sm-12 col-lg-3 offset-lg-1 mt-5">
             <img src="media/{{ product.image }}" alt="{{ product.name }}" class="my-auto product-image">
         </div>
-        <div class="col-sm-12 col-md-3 mt-5">
+        <div class="col-sm-12 col-lg-3 mt-5">
             <h2 class="text-capitalize">{{ product.name }}</h2>
             <p>Date of capture: {{ product.date }}</p>
             <p>Description: {{ product.description }}</p>
             <form>
+                {% csrf_token %}
                 <p><strong>Size:</strong></p>
                 <select class="form-control rounded-0 w-50">
                     <option value="" disabled selected>-Select size-</option>
                     {% for size in sizes %}
-                    <option value="{{ size.sizes }}">{{ size.sizes }}</option>
+                        <option value="{{ size.price }}" class="size_len">{{ size.sizes }}</option>
                     {% endfor %}
                 </select>
                 <p class="mt-5"><strong>Finish:</strong></p>
                 <select class="form-control rounded-0 w-50">
                     <option value="" disabled selected>-Select Finish-</option>
                     {% for finish in finishes %}
-                    <option value="{{ finish.finish}}">{{ finish.finish }}</option>
+                        <option value="{{ finish.price}}" class="finish_img">{{ finish.finish }}</option>
                     {% endfor %}
                 </select>
-                <button class="btn my-btn text-light mt-5">Calculate Price</button>
+                <button class="btn my-btn text-light mt-5 calculate">Calculate Price</button>
+                <p class="price text-light"></p>
             </form>
         </div>
-        <div class="col-sm-12 col-md-3 mt-5">
+        <div class="col-sm-12 col-lg-3 mt-5">
             <form>
                 <!-- quantity for add to bag-->
             </form>
             <a href="{% url 'products' %}" class="btn my-btn text-light"><i class="fas fa-arrow-left"></i> Keep Shopping</a>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+    <script type="text/javascript">
+        $('.calculate').on('click', function(event) {
+            event.preventDefault();
+            var size_len = parseFloat($('.size_len').val());
+            var finish_img = parseFloat($('.finish_img').val());
+            var price = size_len + finish_img;
+            var item_price = price.toFixed(2);
+
+            $('.price').append("£"+item_price);
+
+        });
+    </script>
 {% endblock %}

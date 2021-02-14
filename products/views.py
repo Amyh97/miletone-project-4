@@ -30,10 +30,10 @@ def product_detail(request, product_id):
     product = get_object_or_404(products, pk=product_id)
     size = sizes.objects.all()
     finishes = finish.objects.all()
+
     context = {
         'product': product,
         'sizes': size,
         'finishes': finishes,
     }
-
     return render(request, 'products/product_detail.html', context)
