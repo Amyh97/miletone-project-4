@@ -6,9 +6,23 @@
 
 {% block content %}
 <div class="row">
-    <div class="col">
+    <div class="col-md-10">
         <h2 class="mt-2 text-center">Products</h2>
         <hr class="w-75 mx-auto">
+    </div>
+    <div class="col-md-2">
+        <div class="btn-group">
+            <button class="btn my-btn text-light mt-4 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Fileter by categoty
+            </button>
+            <ul class="dropdown-menu">
+                {% for category in categories %}
+                    <li class="mb-1">
+                        <a href="{% url 'products' %}?category_sort={{ category.name }}" class="fliter-link">{{ category.friendly_name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>
 <div class="row">

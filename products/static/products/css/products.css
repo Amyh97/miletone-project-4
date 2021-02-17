@@ -6,6 +6,12 @@
     columns: gap 2px;;
 }
 
+.fliter-link {
+    text-decoration: none;
+    color: #000000;
+}
+
+/*--- pagination ---*/
 .pagination {
     margin-bottom: 3rem;
 }

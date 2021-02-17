@@ -134,12 +134,36 @@
     </footer>
 
     {% block postloadjs %}
-    <!--
-    <script type="text/javascript">
-        $('.toast').toast('show');
-    </script>
--->
+        <script type="text/javascript">
+            $('.calculate').click(function(event) {
+                event.preventDefault();
+                // clear last vlaue calculated by this function 
+                $('.price').empty();
+                // initialize varibles
+                var size_len = 0
+                var finish_img = 0
+                // already set to 0 so will pick up new value
+                if (size_len == 0) {                   
+                    var size_len = parseFloat($('.size_len_opt option:selected').val());                   
+                };
 
+                if (finish_img == 0){
+                    var finish_img = parseFloat($('.finish_img_opt option:selected').val());
+                };
+
+                //add the two parts of cost together
+                cost = size_len + finish_img
+                // present the cost as a readable price
+                price = cost.toFixed(2)
+                
+                if (price == NaN){
+                    $('.price').append("Please ensure you have selected both a size and a finish")
+                }else{
+                    //return price from calculations to the page for user
+                    $('.price').append("The total for these options is £"+price)
+                }
+            });
+        </script>
     {% endblock %}
 </body>
 

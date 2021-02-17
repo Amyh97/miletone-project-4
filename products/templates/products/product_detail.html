@@ -15,22 +15,30 @@
             <p>Description: {{ product.description }}</p>
             <form>
                 {% csrf_token %}
-                <p><strong>Size:</strong></p>
-                <select class="form-control rounded-0 w-50">
-                    <option value="" disabled selected>-Select size-</option>
-                    {% for size in sizes %}
-                        <option value="{{ size.price }}" class="size_len">{{ size.sizes }}</option>
-                    {% endfor %}
-                </select>
-                <p class="mt-5"><strong>Finish:</strong></p>
-                <select class="form-control rounded-0 w-50">
-                    <option value="" disabled selected>-Select Finish-</option>
-                    {% for finish in finishes %}
-                        <option value="{{ finish.price}}" class="finish_img">{{ finish.finish }}</option>
-                    {% endfor %}
-                </select>
+                <p>The price is calculated by the size and finish of the image, select your prefered size and finish to calculate the price.</p>
+                <p class="price fw-bold"></p>
+                <div class="row">
+                    <div class="col-6">
+                        <p><strong>Size:</strong></p>
+                        <select class="form-control rounded-0 w-100 size_len_opt" required>
+                            <option value="" disabled selected>-Select size-</option>
+                            {% for size in sizes %}
+                                <option value="{{ size.price }}" >{{ size.sizes }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <p><strong>Finish:</strong></p>
+                        <select class="form-control rounded-0 w-100 finish_img_opt" required>
+                            <option value="" disabled selected>-Select Finish-</option>
+                            {% for finish in finishes %}
+                                <option value="{{ finish.price}}" class="finish_img">{{ finish.finish }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
                 <button class="btn my-btn text-light mt-5 calculate">Calculate Price</button>
-                <p class="price text-light"></p>
+                
             </form>
         </div>
         <div class="col-sm-12 col-lg-3 mt-5">
@@ -40,20 +48,4 @@
             <a href="{% url 'products' %}" class="btn my-btn text-light"><i class="fas fa-arrow-left"></i> Keep Shopping</a>
         </div>
     </div>
-{% endblock %}
-
-{% block postloadjs %}
-{{ block.super }}
-    <script type="text/javascript">
-        $('.calculate').on('click', function(event) {
-            event.preventDefault();
-            var size_len = parseFloat($('.size_len').val());
-            var finish_img = parseFloat($('.finish_img').val());
-            var price = size_len + finish_img;
-            var item_price = price.toFixed(2);
-
-            $('.price').append("£"+item_price);
-
-        });
-    </script>
 {% endblock %}
