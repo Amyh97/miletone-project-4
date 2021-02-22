@@ -7,30 +7,25 @@ from .models import products, sizes, finish, categories
 def products_page(request):
     """ A view to display all images for sale"""
     category = categories.objects.all()
-    product = None
+    product = products.objects.all()
 
     if request.GET:
         if 'CategorySort' in request.GET:
             CategorySort = request.GET['CategorySort']
             # double underscore is common Django syntax for queries
             product = products.objects.filter(category__name=CategorySort)
+        else:
+            product = products.objects.all()
 
-    else:
-        product = products.objects.all()
+    page = request.GET.get('page', 1)
 
-    if product.__len__ >= 11:
-        hide = False
-        page = request.GET.get('page', 1)
-
-        paginator = Paginator(product, 10)
-        try:
-            product = paginator.page(page)
-        except PageNotAnInteger:
-            product = paginator.page(1)
-        except EmptyPage:
-            product = paginator.page(paginator.num_pages)
-    else:
-        hide = True
+    paginator = Paginator(product, 18)
+    try:
+        product = paginator.page(page)
+    except PageNotAnInteger:
+        product = paginator.page(1)
+    except EmptyPage:
+        product = paginator.page(paginator.num_pages)
 
     context = {
         'products': product,
