@@ -100,7 +100,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fas fa-shopping-basket fa-lg"></i> Basket</a>
+                                <a class="nav-link" href="{% url 'bag' %}"><i class="fas fa-shopping-basket fa-lg"></i> Basket</a>
                             </li>
                         </ul>
                     </div>
@@ -118,7 +118,7 @@
 
     {% endblock %}
 
-    <div class="my-container">
+    <div class="my-container w-100">
         <div class="backround-img"></div>
         {% block content %}
 

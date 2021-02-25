@@ -1,3 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def bag(request):
+    """ a view to return bag content """
+    return render(request, 'bag/bag.html')
