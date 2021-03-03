@@ -144,23 +144,33 @@
                 var finish_img = 0
                 // already set to 0 so will pick up new value
                 if (size_len == 0) {                   
-                    var size_len = parseFloat($('.size_len_opt option:selected').val());                   
+                    var size_len = parseFloat($('.size_len_opt option:selected').val().slice(0,4));
+                    var size_len_name = $('.size_len_opt option:selected').val().slice(4,);        
                 };
 
                 if (finish_img == 0){
-                    var finish_img = parseFloat($('.finish_img_opt option:selected').val());
+                    var finish_img = parseFloat($('.finish_img_opt option:selected').val().slice(0,4));
+                    var finish_img_name = $('.size_len_opt option:selected').val().slice(4,); 
                 };
-
+                
                 //add the two parts of cost together
                 cost = size_len + finish_img
                 // present the cost as a readable price
                 price = cost.toFixed(2)
                 
-                if (price == NaN){
+                // toFixed returns string so NaN is also a string
+                if (price == "NaN"){
                     $('.price').append("Please ensure you have selected both a size and a finish")
                 }else{
                     //return price from calculations to the page for user
-                    $('.price').append("The total for these options is £"+price)
+                    $('.price').append("The total for these options is £"+price+ " per item")
+                    $('.GetPrice').val(price)
+                    $('.SetSizeLen').val(size_len_name)
+                    $('.SetFinishImg').val(finish_img_name);
+                };
+                // use cosg here as type is number
+                if (cost != 0) {
+                    $('.AddToBasket').removeAttr("disabled")
                 }
             });
         </script>
