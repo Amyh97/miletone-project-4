@@ -1,22 +1,34 @@
 from decimal import Decimal
 from django.conf import settings
-"""
-    basket context processor so that the bag can be
-    accessed from any page of the site
-"""
+from .views import basket_item
 
 
 def basket_content(request):
-
     basket_items = []
     total = 0
-    # items in basket, services or products
     count = 0
+    basket = request.session.get('basket', {})
+    item = basket_item
+
+    for item in basket.items():
+        # item is tuple, element 0 is string version of dict
+        split_items = item[0].split(",")
+        # get the value after ":" of quantity and price items
+        quantity = int(split_items[1].split(":")[1])
+        price = split_items[2].split(":")[1]
+        # remove excess quote marks from sting
+        price_tidy = price.replace("'", "")
+        # convert to decimal to do maths on
+        float_price = Decimal(price_tidy)
+        total += quantity * float_price
+        count += quantity
+        basket_items.append({
+                'item': item
+            })
 
     if total < settings.FREE_DELIVERY:
-        """ use decimal rather than float as it is less likely
-        to have rounding errors """
-        delivery = total * Decimal(settings.DELIVERY_PERCENTAGE)
+        # decimal used rather than float as float is more susceptible to errors
+        delivery = total * Decimal(settings.DELIVERY_PERCENTAGE / 100)
         free_delivery_delta = settings.FREE_DELIVERY - total
     else:
         delivery = 0
@@ -29,9 +41,8 @@ def basket_content(request):
         'total': total,
         'count': count,
         'delivery': delivery,
-        'free delivery': settings.FREE_DELIVERY,
         'free_delivery_delta': free_delivery_delta,
-        'grand_total': grand_total,
+        'free_delivery_threshold': settings.FREE_DELIVERY,
+        'grand_total': grand_total
     }
-
     return context

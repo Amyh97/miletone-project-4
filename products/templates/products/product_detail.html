@@ -15,7 +15,7 @@
         <p>Description: {{ product.description }}</p>
     </div>
     <div class="col-sm-12 col-lg-3 mt-5">
-        <form action="{% url 'add_to_basket' product.id %}" method="POST" name="AddToBasket">
+        <form action="{% url 'basket_item' product.id %}" method="POST" name="AddToBasket">
             {% csrf_token %}
             <p>The price is calculated by the size and finish of the image, select your prefered size and finish to
                 calculate the price then add to basket.</p>
@@ -35,7 +35,7 @@
                     <select class="form-control rounded-0 w-100 finish_img_opt" required>
                         <option value="" disabled selected>-Select Finish-</option>
                         {% for finish in finishes %}
-                        <option value="{{ finish.price}}" class="finish_img">{{ finish.finish }}</option>
+                        <option value="{{ finish.price }}{{ finish.finish }}" class="finish_img">{{ finish.finish }}</option>
                         {% endfor %}
                     </select>
                 </div>

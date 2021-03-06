@@ -11,6 +11,10 @@
         <div class="col-12 mt-4">
             <!-- if basket items will only render the table if there are items in the bag-->
             {% if basket_items %}
+                <div class="table-responsive">
+                    <p>{{ basket_items }}</p>
+                    
+                </div>
             {% else %}
             <h3 class="mx-4">Your basket is currently empty.</h3>
              <a href="{% url 'products' %}" class="btn my-btn text-light mx-4"><i class="fas fa-arrow-left"></i> Keep Shopping</a>
