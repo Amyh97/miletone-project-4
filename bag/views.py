@@ -24,12 +24,14 @@ def basket_item(request, item_id):
             'finish_img': finish_img,
             'image': image,
         }
-        if item in list(basket.keys()):
-            item = str(item)
-            basket[item] += quantity
-        else:
-            item = str(item)
-            basket[item] = quantity
 
-        request.session['basket'] = basket
-        return redirect(redirect_url)
+    if item in list(basket.keys()):
+        item = str(item)
+        basket[item] += quantity
+
+    else:
+        item = str(item)
+        basket[item] = quantity
+
+    request.session['basket'] = basket
+    return redirect(redirect_url)

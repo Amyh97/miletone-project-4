@@ -18,7 +18,7 @@
         <form action="{% url 'basket_item' product.id %}" method="POST" name="AddToBasket">
             {% csrf_token %}
             <p>The price is calculated by the size and finish of the image, select your prefered size and finish to
-                calculate the price then add to basket.</p>
+                calculate the price then add to basket where you can increase the quantity from 1 if you want more.</p>
             <p class="price fw-bold"></p>
             <div class="row">
                 <div class="col-6">
@@ -43,10 +43,7 @@
             <button class="btn my-btn text-light mt-5 calculate">Calculate Price</button>
             <div class="col-sm-12 col-lg-3 mt-5">
                 <div class="form-group row">
-                    <div class="input-group">
-                        <input class="form-control" type="number" name="quantity" value="1" min="1" max="100"
-                            data-product-id="{{product.id}}" id="qty_{{product.id}}">
-                    </div>
+                    <input type="hidden" name="quantity" value="1" >
                     <input type="hidden" name="name" value="{{product.name}}">
                     <input type="hidden" name="image" value="{{product.image.url}}">
                     <input type="hidden" name="size_len" value="" class="SetSizeLen">
