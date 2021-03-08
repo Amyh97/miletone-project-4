@@ -8,11 +8,34 @@
             <h2 class="text-center">Basket:</h2>
             <hr class="w-50 mx-auto">
         </div>
-        <div class="col-12 mt-4">
+        <div class="col-10 offset-1 mt-4">
             <!-- if basket items will only render the table if there are items in the bag-->
             {% if basket_items %}
                 <div class="table-responsive">
-                    <p>{{ basket_items }}</p>
+                    <table class="table table-striped">
+                        <thead>
+                            <th scope="col">Item</th>
+                            <th><!-- create blank gap for image --></th>
+                            <th scope="col">Size/Length</th>
+                            <th scope="col">Finish/ Images</th>
+                            <th scope="col">Price per item</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total Price</th>
+                        </thead>
+                        <tbody>
+                            {% for item in basket_items %}
+                                <tr>
+                                    <td><strong>{{ item.name }}</strong></td>
+                                    <td><img src="{{ item.image }}" alt="{{ item.name }}" style="max-width: 150px;"></td>
+                                    <td> {{ item.size_len }}</td>
+                                    <td> {{ item.finish_img }}</td>
+                                    <td> £{{ item.price }}</td>
+                                    <td> {{ item.quantity }}</td>
+                                    <td>£{{ item.item_total }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                     
                 </div>
             {% else %}

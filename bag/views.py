@@ -25,8 +25,17 @@ def basket_item(request, item_id):
         if item_in_basket in basket[item_id]['items_by_specs'].keys():
             # add variable accesses the last item in the item_in_basket dict
             add = int(basket[item_id]['items_by_specs'][item_in_basket])
-            add += quantity
-            basket[item_id]['items_by_specs'][item_in_basket] += add
+            quantity = add + quantity
+            basket[item_id]['items_by_specs'][item_in_basket] += quantity - add
+
+        else:
+            """
+            assign a more unique id if image is already in basket
+            with different specs
+            """
+            item_id = item_id + size_len + finish_img
+            basket[item_id] = {'items_by_specs': {item_in_basket: quantity}}
+
     else:
         basket[item_id] = {'items_by_specs': {item_in_basket: quantity}}
 
