@@ -33,7 +33,14 @@
                                     <td> {{ item.size_len }}</td>
                                     <td> {{ item.finish_img }}</td>
                                     <td> £{{ item.price }}</td>
-                                    <td> {{ item.quantity }}</td>
+                                    <td> 
+                                        <form action="#" method="POST" class="qty-form">
+                                            {% csrf_token %}
+                                            <input class="form-control" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="100" >
+                                        </form>
+                                        <a class="update">Update</a>
+                                        <a class="remove text-danger" id="remove_{{ item.item_id }}">Remove</a>
+                                    </td>
                                     <td>£{{ item.item_total }}</td>
                                 </tr>
                             {% endfor %}
@@ -67,4 +74,29 @@
             {% endif %}
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+    <script type="text/javascript">
+        // update number in basket
+         $('.update').click(function (e) {
+        var form = $(this).prev('.qty-form');
+        form.submit();
+    })
+
+    // remove item from bag
+    $('.remove').click(function (e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var url = `/basket/remove/${itemId}/`;
+        // middleware requited by Django
+        var data = { 'csrfmiddlewaretoken': csrfToken};
+
+        $.post(url, data)
+            .done(function () {
+                location.reload();
+            });
+    })    
+    </script>
 {% endblock %}
