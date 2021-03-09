@@ -15,7 +15,8 @@ def basket_content(request):
             name = specs[1]
             size_len = specs[2]
             finish_img = specs[3]
-            price = Decimal(specs[4])
+            string_price = specs[4]
+            price = Decimal(string_price)
             image = specs[5]
             quantity = int(quantity)
             total += quantity * price

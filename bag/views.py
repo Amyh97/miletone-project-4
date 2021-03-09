@@ -35,6 +35,7 @@ def basket_item(request, item_id):
             """
             item_id = item_id + size_len + finish_img
             basket[item_id] = {'items_by_specs': {item_in_basket: quantity}}
+            print('here')
 
     else:
         basket[item_id] = {'items_by_specs': {item_in_basket: quantity}}
