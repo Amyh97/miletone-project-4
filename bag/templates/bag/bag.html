@@ -34,7 +34,7 @@
                                     <td> {{ item.finish_img }}</td>
                                     <td> £{{ item.price }}</td>
                                     <td> 
-                                        <form action="#" method="POST" class="qty-form">
+                                        <form action="{% url 'adjust_basket' item.item_id %}" method="POST" class="qty-form">
                                             {% csrf_token %}
                                             <input class="form-control" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="100" >
                                         </form>
