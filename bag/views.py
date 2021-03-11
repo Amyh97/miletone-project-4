@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, HttpResponse
 
 
 def bag(request):
@@ -72,3 +72,14 @@ def adjust_basket(request, item_id):
 
     request.session['basket'] = basket
     return redirect(reverse('bag'))
+
+
+def remove_from_basket(request, item_id):
+    """ Remove a specific product in the shopping cart """
+    try:
+        basket = request.session.get('basket', {})
+        basket.pop(item_id)
+        request.session['basket'] = basket
+        return HttpResponse(status=200)
+    except Exception as e:
+        return HttpResponse(status=500)
