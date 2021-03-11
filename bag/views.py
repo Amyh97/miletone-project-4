@@ -42,7 +42,6 @@ def basket_item(request, item_id):
         basket[item_id] = {'items_by_specs': {item_in_basket: quantity}}
 
     request.session['basket'] = basket
-    print(basket)
 
     return redirect(redirect_url)
 
