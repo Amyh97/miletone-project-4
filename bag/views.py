@@ -51,21 +51,24 @@ def adjust_basket(request, item_id):
     """Update quantity of a specific product in the shopping cart"""
     quantity = int(request.POST.get('quantity'))
     basket = request.session.get('basket', {})
-    # use for loop so code can be run on each item in basket
-    for item_id in basket:
-        # each item in basket is 3 dictionaries nested in eachother
-        # turn values into list, dictionary containing specs and quantity
-        basket_item_id = list(basket[item_id].values())
-        # turn item into string so it can be split and manipulated
-        dict_string = str(basket_item_id[0])
-        # remove quotes from string to tidy for context processor
-        remove_quotes = dict_string.replace("'", "")
-        # split string at : to get value of key value pair
-        split_val = remove_quotes.split(":")[0]
-        """ remove remaining curly brace so string matches
-        the original val of items_by_specs """
-        change_quantity = split_val.replace("{", "")
-        basket[item_id]['items_by_specs'][change_quantity] = quantity
+    if quantity < 0:
+        # use for loop so code can be run on each item in basket
+        for item_id in basket:
+            # each item in basket is 3 dictionaries nested in eachother
+            # turn values into list, dictionary containing specs and quantity
+            basket_item_id = list(basket[item_id].values())
+            # turn item into string so it can be split and manipulated
+            dict_string = str(basket_item_id[0])
+            # remove quotes from string to tidy for context processor
+            remove_quotes = dict_string.replace("'", "")
+            # split string at : to get value of key value pair
+            split_val = remove_quotes.split(":")[0]
+            """ remove remaining curly brace so string matches
+            the original val of items_by_specs """
+            change_quantity = split_val.replace("{", "")
+            basket[item_id]['items_by_specs'][change_quantity] = quantity
+    else:
+        del basket[item_id]
 
     request.session['basket'] = basket
     return redirect(reverse('bag'))
