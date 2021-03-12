@@ -108,6 +108,6 @@ footer a {
     z-index: 999999;
 }
 
-.hidden {
-    display: none;
+.toast-img {
+    max-width: 100px;
 }

@@ -1,10 +1,13 @@
 <div class="toast custom-toast show" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="toast-header toast-capper">
-    <img src="..." class="rounded me-2" alt="...">
     <strong class="me-auto">Success!</strong>
     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
   </div>
   <div class="toast-body">
-    {{ message }}
+      {{ message }}
+      {% if grand_total %}
+        <br>
+        <a class="btn my-btn text-light mt-1" href="{% url 'bag' %}"><i class="fas fa-shopping-basket fa-lg"></i> Basket</a>
+      {% endif %}
   </div>
 </div>
