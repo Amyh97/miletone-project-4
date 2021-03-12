@@ -1,4 +1,8 @@
-from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.shortcuts import render, redirect, reverse,\
+                        HttpResponse, get_object_or_404
+from django.contrib import messages
+
+from products.models import products
 
 
 def bag(request):
@@ -27,8 +31,11 @@ def basket_item(request, item_id):
         if item_in_basket in basket[item_id]['items_by_specs'].keys():
             # add variable accesses the last item in the item_in_basket dict
             add = int(basket[item_id]['items_by_specs'][item_in_basket])
+            print(add)
             quantity = add + quantity
             basket[item_id]['items_by_specs'][item_in_basket] += quantity - add
+            messages.success(request, f'Added {quantity} {name}, {size_len},\
+                        {finish_img} to your basket.')
 
         else:
             """
@@ -37,9 +44,13 @@ def basket_item(request, item_id):
             """
             item_id = item_id + size_len + finish_img
             basket[item_id] = {'items_by_specs': {item_in_basket: quantity}}
+            messages.success(request, f'Added {quantity} {name}, {size_len},\
+                        {finish_img} to your basket.')
 
     else:
         basket[item_id] = {'items_by_specs': {item_in_basket: quantity}}
+        messages.success(request, f'Added {quantity} {name}, {size_len},\
+                        {finish_img} to your basket.')
 
     request.session['basket'] = basket
 
@@ -50,9 +61,11 @@ def adjust_basket(request, item_id):
     """Update quantity of a specific product in the shopping cart"""
     quantity = int(request.POST.get('quantity'))
     basket = request.session.get('basket', {})
-    if quantity < 0:
-        # use for loop so code can be run on each item in basket
-        for item_id in basket:
+    product = get_object_or_404(products, pk=item_id)
+
+    if quantity > 0:
+        # use if so code can be run on each item in basket
+        if item_id in basket:
             # each item in basket is 3 dictionaries nested in eachother
             # turn values into list, dictionary containing specs and quantity
             basket_item_id = list(basket[item_id].values())
@@ -66,8 +79,12 @@ def adjust_basket(request, item_id):
             the original val of items_by_specs """
             change_quantity = split_val.replace("{", "")
             basket[item_id]['items_by_specs'][change_quantity] = quantity
+        messages.success(request, f'The quantity of {product.name}\
+                    has been changed to {quantity}.')
     else:
         del basket[item_id]
+        messages.warning(request, f'{product.name} has been\
+                        removed from your basket')
 
     request.session['basket'] = basket
     return redirect(reverse('bag'))
@@ -75,10 +92,13 @@ def adjust_basket(request, item_id):
 
 def remove_from_basket(request, item_id):
     """ Remove a specific product in the shopping cart """
+    product = get_object_or_404(products, pk=item_id)
     try:
         basket = request.session.get('basket', {})
         basket.pop(item_id)
         request.session['basket'] = basket
+        messages.warning(request, f'{product.name} has been\
+                        removed from your basket')
         return HttpResponse(status=200)
     except Exception as e:
         return HttpResponse(status=500)

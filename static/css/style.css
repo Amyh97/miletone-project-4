@@ -93,3 +93,21 @@ footer a {
     color: #0d47a1;
     margin-top: 1.5rem;
 }
+
+.message-container {
+    position: fixed;
+    top: 87px;
+    right: 20px;
+    z-index: 999999;
+}
+
+.message-container {
+    position: fixed;
+    top: 87px;
+    right: 20px;
+    z-index: 999999;
+}
+
+.hidden {
+    display: none;
+}

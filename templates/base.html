@@ -109,17 +109,31 @@
         </nav>        
     </header>
 
-    {% if messages %}
-        <div class="message-container">
-
-        </div>
-    {% endif %}
     {% block page_header %}
 
     {% endblock %}
 
+    
+    
     <div class="my-container w-100">
         <div class="backround-img"></div>
+        {% if messages %}
+            <div class="message-container">
+                {% for message in messages %}
+                    {% with message.level as level %}
+                        {% if level == 40 %}
+                            {% include 'includes/toasts/toast_errors.html' %}
+                        {% elif level == 30 %}
+                            {% include 'includes/toasts/toast_warning.html' %}
+                        {% elif level == 25 %}
+                            {% include 'includes/toasts/toast_success.html' %}
+                        {% else %}
+                            {% include 'includes/toasts/toast_info.html' %}
+                        {% endif %}
+                    {% endwith %}
+                {% endfor %}
+            </div>
+        {% endif %}
         {% block content %}
 
         {% endblock %}
@@ -134,6 +148,19 @@
     </footer>
 
     {% block postloadjs %}
+        <script type="text/javascript">
+        // show toasts
+        $(document).ready(function() {
+
+            $('.toast').show()
+        });
+
+        // close toast notifications
+        $(".btn-close").click(function(){
+            $('.toast').toast('hide');
+        });
+        </script>
+        
         <script type="text/javascript">
             $('.calculate').click(function(event) {
                 event.preventDefault();
