@@ -122,7 +122,7 @@
                 {% for message in messages %}
                     {% with message.level as level %}
                         {% if level == 40 %}
-                            {% include 'includes/toasts/toast_errors.html' %}
+                            {% include 'includes/toasts/toast_error.html' %}
                         {% elif level == 30 %}
                             {% include 'includes/toasts/toast_warning.html' %}
                         {% elif level == 25 %}
