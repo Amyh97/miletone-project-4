@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="row w-100">
+    <div class="col-12 mt-2">
+        <hr class="w-50 mx-auto">
+        <h2 class="text-center">Checkout:</h2>
+        <hr class="w-50 mx-auto">
+    </div>
+</div>
+<div class="row mx-1">
+    <div class="col-12 col-md-6 order-md-last">
+        <!-- order summary -->
+        <p>Order Summary ({{count }})</p>
+        <div class="table-responsive overview">
+                    <table class="table">
+                        <thead>
+                            <th scope="col">Item</th>
+                            <th><!-- create blank gap for image --></th>
+                            <th scope="col">Size/Length</th>
+                            <th scope="col">Finish/ Images</th>
+                            <th scope="col">Price per item</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total Price</th>
+                        </thead>
+                        <tbody>
+                            {% for item in basket_items %}
+                                <tr>
+                                    <td><strong>{{ item.name | title }}</strong></td>
+                                    <td><img src="{{ item.image }}" alt="{{ item.name }}" class="overview-img"></td>
+                                    <td> {{ item.size_len }}</td>
+                                    <td> {{ item.finish_img }}</td>
+                                    <td> £{{ item.price }}</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td>£{{ item.item_total }}</td>
+                                </tr>
+                            {% endfor %}
+                            <tr>
+                                <td colspan="7" class="text-end">
+                                    <p><strong>Basket Total: £{{ total|floatformat:2 }}</strong></p>
+                                    <p><strong>Delivery: £{{ delivery|floatformat:2 }}</strong></p>
+                                    <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
+                                    {% if free_delivery_delta > 0 %}
+                                        <p class="mb-1 text-danger">
+                                            You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong> more!
+                                        </p>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+        </div>
+    </div>    
+        <div class="col-12 col-md-6">
+            <p>Please fill out the form below to complete your order.</p>
+            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                {% csrf_token %}
+                <fieldset>
+                    <legend class="fieldset-label">Your Details</legend>
+                    {{ order_form.full_name | as_crispy_field }}
+                    {{ order_form.email | as_crispy_field }}
+                    {{ order_form.phone_number | as_crispy_field }}
+                </fieldset>
+                <fieldset>
+                    <legend class="fieldset-label">Delivery Details</legend>
+                    {{ order_form.street_address1 | as_crispy_field }}
+                    {{ order_form.street_address2 | as_crispy_field }}
+                    {{ order_form.town_or_city | as_crispy_field }}
+                    {{ order_form.postcode | as_crispy_field }}
+                    {{ order_form.country | as_crispy_field }}
+                    <!-- if user is logged in save order to profile -->
+                    {% if user.is_authenticated %}
+                    <input class="form-check-input ml-2 mr-0" type="hidden" id="id-save-info" name="save-info" checked>
+                    <!-- if the user is not logged in, give users the option to log in or create account -->
+                    {% else %}
+                    <label class="form-check-label" for="id-save-info">
+                        <!-- django urls -->
+                        <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
+                        <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
+                    </label>
+                    {% endif %}
+                </fieldset>
+                <fieldset>
+                    <legend class="fieldset-label">Payment Details</legend>
+                    <!-- stripe elemetns go here-->
+                    <div id="card-element" class="mb-2">
+
+                    </div>
+                    <!-- stripe errors go here-->
+                    <div id="card-errors">
+
+                    </div>
+                </fieldset>
+                <!-- submit button -->
+                <div class="submit-button text-right mt-5 mb-2">
+                    <!-- option to keep shopping -->
+                    <a href="{% url 'bag' %}" class="btn my-btn text-light mx-1">
+                        <span class="font-weight-bold"><i class="fas fa-chevron-left"></i> Adjust Bag</span>
+                    </a>
+                    <!-- submit button, used with JS -->
+                    <button id="submit-button" class="btn my-btn text-light mx-1">
+                        <span class="font-weight-bold">Complete Order <i class="far fa-credit-card"></i></span>
+                    </button>
+                    <!-- warning card is about to be charged -->
+                    <p class="text-danger my-1 mb-2 mx-2">
+                        <i class="fas fa-exclamation"></i> Your card will be charged
+                        <strong>£{{ grand_total|floatformat:2 }}</strong>
+                    </p>
+                </div>
+            </form>
+        </div>
+</div>
+    {% endblock %}

@@ -6,20 +6,20 @@ from .models import Order
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        fields = ('full_name', 'email_address', 'phone_nubmber',
-                  'street_address1', 'street_address2', 'town',
-                  'postcode', 'counrty',)
+        fields = ('full_name', 'email', 'phone_number',
+                  'street_address1', 'street_address2', 'town_or_city',
+                  'postcode', 'country',)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # add place holders ro render to form, fields from above
         placeholders = {
             'full_name': 'Full Name',
-            'email_address': 'Email Address',
+            'email': 'Email Address',
             'phone_number': 'Contact Number',
             'street_address1': 'Street Address 1',
             'street_address2': 'Street Address 2',
-            'town': 'Town or City',
+            'town_or_city': 'Town or City',
             'postcode': 'Post Code',
             'counrty': 'Counrty',
         }
