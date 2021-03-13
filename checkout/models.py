@@ -76,9 +76,9 @@ class OrderItem(models.Model):
     price = models.DecimalField(max_digits=6, decimal_places=2)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     # unable to edit as it will be automatically created
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2,
-                                         null=False, blank=False,
-                                         editable=False)
+    orderitem_total = models.DecimalField(max_digits=6, decimal_places=2,
+                                          null=False, blank=False,
+                                          editable=False)
 
     def save(self, *args, **kwargs):
         """ Override original save method to set the orderitem total
