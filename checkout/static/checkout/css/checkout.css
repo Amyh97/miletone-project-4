@@ -1,3 +1,74 @@
+/*--- stripe style input class is added to elements in form =.py ---*/
+/*--- css from stripe docs ---*/
+.StripeElement,
+.stripe-style-input {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  border-radius: 0px;
+  background-color: white;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus,
+.stripe-style-input:focus,
+.stripe-style-input:active {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.stripe-style-input::placeholder {
+    color: #aab7c4;
+}
+
+ /*--- form elements ---*/
+.fieldset-label {
+    position: relative;
+    right: .5rem;
+}
+#payment-form, .form-control,
+#card-element {
+    color: #000;
+    width: 75%;
+    margin-left: 15%;
+    border-radius: 4px;
+}
+
+select,
+select option {
+    color: #000;
+}
+
+select:invalid,
+select option[value=""] {
+    color: #aab7c4 !important;
+}
+
+
+ /*--- form elements ---*/
+.fieldset-label {
+    position: relative;
+    right: .5rem;
+}
+
+select,
+select option, #payment-form, .form-control,
+#card-element {
+    color: #000;
+}
+
+select:invalid,
+select option[value=""] {
+    color: #aab7c4 !important;
+}
+
+/*--- custom css ---*/
 .overview-img {
     max-width: 100px;
 }
@@ -17,4 +88,14 @@ table, form {
 .overview {
     max-height: 80%;
     overflow-y: auto;
+}
+
+#payment-form {
+    padding: 15px;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 400;
 }

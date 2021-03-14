@@ -80,21 +80,19 @@
                     {% else %}
                     <label class="form-check-label" for="id-save-info">
                         <!-- django urls -->
-                        <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
-                        <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
+                        <a href="{% url 'account_signup' %}">Create an account</a> or
+                        <a href="{% url 'account_login' %}">login</a> to save this information
                     </label>
                     {% endif %}
                 </fieldset>
                 <fieldset>
-                    <legend class="fieldset-label">Payment Details</legend>
-                    <!-- stripe elemetns go here-->
-                    <div id="card-element" class="mb-2">
-
-                    </div>
-                    <!-- stripe errors go here-->
-                    <div id="card-errors">
-
-                    </div>
+                    <legend class="fieldset-label px-2 w-auto">Payment</legend>
+                    <!-- Stripe card element goes here -->
+                    <div id="card-element" class="mb-3"></div>
+                    <!-- used to display form errors-->
+                    <div id="card-errors" class="mb-3 text-danger" role="alert"></div>
+                    <!-- Pass the client secret to the view so we can get the payment intent id-->
+                    <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </fieldset>
                 <!-- submit button -->
                 <div class="submit-button text-right mt-5 mb-2">
@@ -114,5 +112,12 @@
                 </div>
             </form>
         </div>
-</div>
-    {% endblock %}
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
+    {{ client_secret|json_script:"id_client_secret" }}
+    <script src="{% static 'checkout/js/stripe_elements.js' %}"></script>
+{% endblock %}
