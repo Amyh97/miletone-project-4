@@ -46,7 +46,7 @@ select option[value=""] {
 
 /*--- custom css ---*/
 .overview-img {
-    max-width: 100px;
+   max-height: 160px;
 }
 
 table, form, .overview {
@@ -95,4 +95,10 @@ loading-overlay {
     justify-content: center;
     margin: 0;
     height: 100%;
+}
+
+.order-review {
+    border: 1px solid #000;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.5);
 }

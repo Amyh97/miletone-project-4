@@ -10,15 +10,58 @@
         <hr class="w-50 mx-auto">
         <h2 class="text-center">Thank you.</h2>
         <hr class="w-50 mx-auto">
-        <p>Your order summary is below, and an email confirmation will be sent to <strong>{{ order.email }}</strong>.</p>
+        <p class="mx-4">Your order summary is below, and an email confirmation will be sent to <strong>{{ order.email }}</strong>.</p>
     </div>
 </div>
 <div class="row">
-    
+    <div class="order-review col-8 offset-2">
+        <div class="row">
+            <div class="customer-details col-6">
+                <p><strong>Order Number:</strong> {{order.order_number }}</p>
+                <p><strong>Order Date:</strong> {{order.date }}</p>
+                <p><strong>Customer Name:</strong> {{order.full_name }}</p>
+                <p><strong>Email Address:</strong> {{ order.email }}</p>
+                <p><strong>Contact Number:</strong> {{order.phone_number }}</p>
+                
+            </div>
+            <div class="address col-6">
+                <p><strong>Address Line 1:</strong> {{order.street_address1 }}</p>
+                {% if street_address2 %}
+                <p><strong>Address Line 2:</strong> {{order.street_address2 }}</p>
+                {% endif %}
+                <p><strong>Town/City:</strong> {{order.town_or_city }}</p>
+                {% if postcode %}
+                <p><strong>Postcode:</strong> {{order.postcode }}</p>
+                {% endif %}
+                <p><strong>Country:</strong> {{order.country }}</p>
+            </div>
+        </div>
+        <div class="order-summary">
+            {% for item in order.orderitems.all %}
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <img src="{{item.product.image.url}}" alt="{{item.product.name}}" class="overview-img">
+                    </div>
+                    <div class="col-6">
+                        <p><strong>Name:</strong> {{item.product.name}}</p>
+                        <p><strong>Image size/ Session length:</strong> {{item.size_len}}</p>
+                        <p><strong>Finish/ Images returned</strong> {{item.finish_img}}</p>
+                        <p><strong>Quantity:</strong> <em>{{item.quantity }}</em> at £<em>{{item.price}}</em> each</p>
+                    </div>
+                </div>
+            {% endfor%}
+            <hr>
+            <p class="text-end"><strong>Total:</strong> £{{order.total}}</p>
+            <p class="text-end"><strong>Delivery Cost:</strong> £{{order.delivery_cost}}</p>
+            <p class="text-end"><strong>Grand Total:</strong> £{{order.grand_total}}</p>
+
+        </div>
+    </div>
 </div>
 <div class="row mx-1">
     <div class="col">
-        <a href="{% url 'products' %}" class="btn my-btn text-light mt-1 mx-auto">
+        <a href="{% url 'home' %}" class="btn my-btn text-light mt-1 mx-auto">
                 <i class="fas fa-arrow-left"></i> Back To Shopping
         </a>
     </div>
