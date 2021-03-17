@@ -76,7 +76,7 @@
                     {{ order_form.country | as_crispy_field }}
                     <!-- if user is logged in save order to profile -->
                     {% if user.is_authenticated %}
-                    <input class="form-check-input ml-2 mr-0" type="hidden" id="id-save-info" name="save-info" checked>
+                    <input class="form-check-input ml-2 mr-0" type="hidden" id="save-info" name="save-info" checked>
                     <!-- if the user is not logged in, give users the option to log in or create account -->
                     {% else %}
                     <label class="form-check-label" for="id-save-info">

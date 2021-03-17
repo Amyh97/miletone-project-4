@@ -26,11 +26,11 @@
             </div>
             <div class="address col-6">
                 <p><strong>Address Line 1:</strong> {{order.street_address1 }}</p>
-                {% if street_address2 %}
+                {% if order.street_address2 %}
                 <p><strong>Address Line 2:</strong> {{order.street_address2 }}</p>
                 {% endif %}
                 <p><strong>Town/City:</strong> {{order.town_or_city }}</p>
-                {% if postcode %}
+                {% if order.postcode %}
                 <p><strong>Postcode:</strong> {{order.postcode }}</p>
                 {% endif %}
                 <p><strong>Country:</strong> {{order.country }}</p>

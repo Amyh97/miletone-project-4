@@ -78,7 +78,7 @@ a {
 
 /*--- loading spinner ---*/
 
-loading-overlay {
+#loading-overlay {
 	display: none;
 	position: fixed;
     top: 0;
@@ -95,10 +95,11 @@ loading-overlay {
     justify-content: center;
     margin: 0;
     height: 100%;
+    color: #0d47a1;
 }
 
 .order-review {
-    border: 1px solid #000;
+    border: 1px solid #0d47a1;
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.5);
 }
