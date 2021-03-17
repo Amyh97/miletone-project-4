@@ -21,7 +21,7 @@ class OrderForm(forms.ModelForm):
             'street_address2': 'Street Address 2',
             'town_or_city': 'Town or City',
             'postcode': 'Post Code',
-            'counrty': 'Counrty',
+            'country': 'Counrty',
         }
 
         # autofocus starts cursor in this box when page loads

@@ -5,14 +5,15 @@
 {% endblock %}
 
 {% block content %}
-<div class="row w-100">
-    <div class="col-12 mt-2">
-        <hr class="w-50 mx-auto">
-        <h2 class="text-center">Checkout:</h2>
-        <hr class="w-50 mx-auto">
+<div class="checkout-container">
+    <div class="row w-100">
+        <div class="col-12 mt-2">
+            <hr class="w-50 mx-auto">
+            <h2 class="text-center">Checkout:</h2>
+            <hr class="w-50 mx-auto">
+        </div>
     </div>
-</div>
-<div class="row mx-1">
+    <div class="row mx-1">
     <div class="col-12 col-md-6 order-md-last">
         <!-- order summary -->
         <p>Order Summary ({{count }})</p>
@@ -113,6 +114,13 @@
             </form>
         </div>
     </div>
+</div>
+<div id="loading-overlay">
+    <h1 class="loading-spinner">
+        <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+    </h1>
+</div>
+
 {% endblock %}
 
 {% block postloadjs %}

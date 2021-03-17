@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="row w-100">
+    <div class="col-12 mt-2">
+        <hr class="w-50 mx-auto">
+        <h2 class="text-center">Thank you.</h2>
+        <hr class="w-50 mx-auto">
+        <p>Your order summary is below, and an email confirmation will be sent to <strong>{{ order.email }}</strong>.</p>
+    </div>
+</div>
+<div class="row">
+    
+</div>
+<div class="row mx-1">
+    <div class="col">
+        <a href="{% url 'products' %}" class="btn my-btn text-light mt-1 mx-auto">
+                <i class="fas fa-arrow-left"></i> Back To Shopping
+        </a>
+    </div>
+</div>
+{% endblock %}

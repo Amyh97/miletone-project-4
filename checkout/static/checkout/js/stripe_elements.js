@@ -5,13 +5,10 @@
     https://stripe.com/docs/stripe-js
 */
 
-// values from form.py passed through json script. Camel case to match stripe docs and match js syntax
-// use 1 and -1 to remove quote marks
 var stripePublicKey = $("#id_stripe_public_key").text().slice(1, -1);
 var clientSecret = $("#id_client_secret").text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
-
 // style from stripe docs, updated colour to black and invalid colours to match bootstrap danger
 var style = {
     base: {
@@ -25,38 +22,36 @@ var style = {
     },
     invalid: {
         color: "#dc3545",
-        iconColor: "#dc3545",
-    },
-};
-
-var card = elements.create("card");
-card.mount("#card-element", { style: style });
-
-// Handle realtime validation errorsin card element
-card.addEventListener('change', function(event) {
-    var errorDiv = $('#card-errors');
-    if(event.error) {
-        var html = 
-            `<span role="alert">
-                <p><i class="fas fa-times"></i> ${ event.error.message }</p>
-            </span>`
-        
-            $(errorDiv).html(html);
-    }else {
-        $(errorDiv).textContent="";
+        iconColor: "#dc3545"
     }
-})
+};
+var card = elements.create("card", { style: style });
+card.mount("#card-element");
 
+// Handle realtime validation errors in card element
+
+card.addEventListener('change', function (event) {
+    var errorDiv = document.getElementById('card-errors');
+    if (event.error) {
+        var html =
+            `<span role="alert">
+	                <p><i class="fas fa-times"></i> ${ event.error.message}</p>
+	            </span>`;
+
+        $(errorDiv).html(html);
+    } else {
+        $(errorDiv).textContent = "";
+
+    }
+});
 // from stripe docs, and personalised for Django and site html 
 // Handle form submit
-var form =$('#payment-form');
+var form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function(ev) {
     ev.preventDefault();
-    // disable card element and submit button to prevent multiple submissions
     card.update({ 'disabled': true});
     $('#submit-button').attr('disabled', true);
-
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
 
@@ -71,10 +66,8 @@ form.addEventListener('submit', function(ev) {
     var url = '/checkout/cache_checkout_data/';
 
     $.post(url, postData).done(function () {
-        // securely send card info to stripe
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
-                // send details to stripe to execute function on the result
                 card: card,
                 billing_details: {
                     name: $.trim(form.full_name.value),
@@ -85,7 +78,7 @@ form.addEventListener('submit', function(ev) {
                         line2: $.trim(form.street_address2.value),
                         city: $.trim(form.town_or_city.value),
                         country: $.trim(form.country.value),
-                        state: $.trim(form.county.value),
+
                     }
                 }
             },
@@ -98,25 +91,23 @@ form.addEventListener('submit', function(ev) {
                     city: $.trim(form.town_or_city.value),
                     country: $.trim(form.country.value),
                     postal_code: $.trim(form.postcode.value),
-                    state: $.trim(form.county.value),
+
                 }
             },
         }).then(function(result) {
             if (result.error) {
-                // shows relevant error message 
-                var errorDiv = $('#card-errors');
-                var html = 
+                var errorDiv = document.getElementById('card-errors');
+                var html =
                     `<span role="alert">
-                        <p><i class="fas fa-times"></i> ${ event.error.message }</p>
-                    </span>`;
+	                        <p><i class="fas fa-times"></i> ${ result.error.message}</p>
+	                    </span>`;
+
                 $(errorDiv).html(html);
                 $('#payment-form').fadeToggle(100);
                 $('#loading-overlay').fadeToggle(100);
-                // re enable c ard and submit elements so user can re-submit once correcting
                 card.update({ 'disabled': false});
                 $('#submit-button').attr('disabled', false);
             } else {
-                //the payment has been processed
                 if (result.paymentIntent.status === 'succeeded') {
                     form.submit();
                 }

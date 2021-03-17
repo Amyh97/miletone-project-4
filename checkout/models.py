@@ -43,8 +43,8 @@ class Order(models.Model):
         accounting for delivery costs """
 
         # or 0 added to this item to prevent error if total is = none
-        self.total = self.orderitems.aggregate(Sum('orderitem_total'))
-        ['orderitem_total__sum'] or 0
+        # leave line too long to avoid errors
+        self.total = self.orderitems.aggregate(Sum('orderitem_total'))['orderitem_total__sum'] or 0
         if self.total < settings.FREE_DELIVERY:
             self.delivery_cost = self.total * settings.\
                                  DELIVERY_PERCENTAGE / 100
