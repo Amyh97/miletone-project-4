@@ -14,10 +14,10 @@
         </div>
     </div>
     <div class="row mx-1">
-    <div class="col-12 col-md-6 order-md-last">
+    <div class="col-12 col-md-7 order-md-last">
         <!-- order summary -->
         <p>Order Summary ({{count }})</p>
-        <div class="table-responsive overview">
+        <div class="table-responsive overview bottom-margin">
                     <table class="table">
                         <thead>
                             <th scope="col">Item</th>
@@ -57,7 +57,7 @@
                     
         </div>
     </div>    
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-5">
             <p>Please fill out the form below to complete your order.</p>
             <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                 {% csrf_token %}
