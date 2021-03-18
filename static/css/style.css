@@ -81,6 +81,15 @@ footer a {
     padding-bottom: 10px;
 }
 
+.allauth-form-inner-content input {
+    border: 1px solid #0d47a1;
+    border-radius: 4px;
+}
+
+.allauth-form-inner-content h2 {
+    text-align: center;
+}
+
 /*--- reused elements ---*/
 
 .my-btn {
@@ -90,6 +99,7 @@ footer a {
 .bottom-margin {
     margin-bottom: 2rem;
 }
+
 .message-container {
     position: fixed;
     top: 90px;

@@ -61,9 +61,15 @@
 </div>
 <div class="row mx-1">
     <div class="col">
-        <a href="{% url 'home' %}" class="btn my-btn text-light mt-1 mx-auto">
-                <i class="fas fa-arrow-left"></i> Back To Shopping
-        </a>
+        {% if not from_profile %}
+            <a href="{% url 'home' %}" class="btn my-btn text-light mt-1 mx-auto">
+                    <i class="fas fa-arrow-left"></i> Back To Shopping
+            </a>
+        {% else %}
+            <a href="{% url 'profile' %}" class="btn my-btn text-light mt-1 mx-auto">
+                    <i class="fas fa-user fa-lg"></i> Back To Profle
+            </a>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
