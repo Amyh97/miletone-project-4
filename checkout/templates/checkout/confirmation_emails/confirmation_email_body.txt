@@ -1,0 +1,20 @@
+Dear {{ order.full_name | title }}
+
+Thank you for placing an order with Amy Hollis Photography. 
+
+Your order details are below:
+ 
+ Order Number: {{ order.order_number }}
+ Date of order: {{ order.date }}
+
+ Order Total: £{{ order.total }}
+ Delivery Cost: £{{ order.delivery}}
+ Grand Total: £{{ order.grand_total }}
+
+Products/photos will be sent to {{ order.street_address1}}, {{ order.town_or_city }} in {{ order.country }}.
+
+If we need to contact you regarding this order we have your number ({{ order.phone_number}}) to call you on. If you have any questions for me,
+please email me at {{ contact_email }}.
+
+Kind regards, 
+Amy Hollis Photography.

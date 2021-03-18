@@ -185,3 +185,7 @@ STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = os.getenv('MS4_STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('MS4_STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('MS4_STRIPE_WH_SECRET', '')
+
+# emails
+
+DEFAULT_FROM_EMAIL = 'amyhollisphotography@example.com'

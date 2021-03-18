@@ -1,5 +1,8 @@
 from django.http import HttpResponse
 from decimal import Decimal
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
 
 from .models import Order, OrderItem
 from products.models import products
@@ -14,6 +17,26 @@ class StripeWH_Handler:
 
     def __init__(self, request):
         self.request = request
+
+    def __send_email_confirmation__(self, order):
+        """ send emails to customer once order is placed """
+        customer_email = order.email
+        subject = render_to_string(
+            # provide template and context
+            'checkout/confirmation_emails/confirmation_email_subject.txt',
+            {'order': order})
+        body = render_to_string(
+            # provide template and context
+            'checkout/confirmation_emails/confirmation_email_body.txt',
+            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+        send_mail(
+            # provide subject, bodt, sender and recipients
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            # list format as there can be multiple recipients
+            [customer_email]
+        )
 
     def handle_event(self, event):
         """
@@ -48,7 +71,7 @@ class StripeWH_Handler:
         username = intent.metadata.username
 
         if username != 'AnonymousUser':
-            profile = UserProfile.objects.get(user_username=username)
+            profile = UserProfile.objects.get(user__username=username)
             if save_info:
                 profile.default_full_name = shipping_address.name
                 profile.default_email = billing_details.email
@@ -56,8 +79,10 @@ class StripeWH_Handler:
                 profile.default_country = shipping_address.address.country
                 profile.default_postcode = shipping_address.address.postal_code
                 profile.default_town = shipping_address.address.city
-                profile.default_street_address1 = shipping_address.address.line1
-                profile.default_street_address2 = shipping_address.address.line2
+                profile.default_street_address1 = shipping_address.\
+                    address.line1
+                profile.default_street_address2 = shipping_address.\
+                    address.line2
                 profile.save()
 
         order_exists = False
@@ -88,6 +113,8 @@ class StripeWH_Handler:
                 time.sleep(1)
 
         if order_exists:
+            # order is in system so can send email
+            self.__send_email_confirmation__(order)
             return HttpResponse(
                     content=f'Webhook received: {event["type"]}|\
                         Order is in database', status=200)
@@ -137,6 +164,8 @@ class StripeWH_Handler:
                     content=f'Webhook received: {event["type"]}\
                             | Error: {e}.',
                     status=500)
+        # order has been created in webhook, so can now send email
+        self.__send_email_confirmation__(order)
         return HttpResponse(
                     content=f'Webhook received: {event["type"]}|\
                         Order created in webhook', status=200)
