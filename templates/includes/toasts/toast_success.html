@@ -5,7 +5,7 @@
   </div>
   <div class="toast-body">
       {{ message }}
-      {% if grand_total %}
+      {% if grand_total and not on_profile_page %}
         <br>
         <a class="btn my-btn text-light mt-1" href="{% url 'bag' %}"><i class="fas fa-shopping-basket fa-lg"></i> Basket</a>
       {% endif %}

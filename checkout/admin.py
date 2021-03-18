@@ -18,7 +18,7 @@ class OrderAdmin(admin.ModelAdmin):
                        'original_basket', 'stripe_pid',)
 
     # order fields in admin pannel
-    fields = ('order_number', 'date', 'full_name', 'email',
+    fields = ('order_number', 'user_profile', 'date', 'full_name', 'email',
               'phone_number', 'country', 'postcode', 'town_or_city',
               'street_address1', 'street_address2', 'delivery_cost',
               'total', 'grand_total', 'original_basket', 'stripe_pid',)

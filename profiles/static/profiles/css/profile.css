@@ -18,3 +18,8 @@
 .profile-form-input {
     padding-top: 5px;
 }
+
+.order_history {
+    max-height:380px;
+    overflow-y: auto;
+}
