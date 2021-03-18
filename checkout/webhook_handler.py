@@ -3,6 +3,7 @@ from decimal import Decimal
 
 from .models import Order, OrderItem
 from products.models import products
+from profiles.models import UserProfile
 
 import json
 import time
@@ -42,6 +43,23 @@ class StripeWH_Handler:
             if value == '':
                 shipping_address.address[field] = None
 
+        # save/update data if save_info was checked
+        profile = None
+        username = intent.metadata.username
+
+        if username != 'AnonymousUser':
+            profile = UserProfile.objects.get(user_username=username)
+            if save_info:
+                profile.default_full_name = shipping_address.name
+                profile.default_email = billing_details.email
+                profile.default_contact_number = shipping_address.phone
+                profile.default_country = shipping_address.address.country
+                profile.default_postcode = shipping_address.address.postal_code
+                profile.default_town = shipping_address.address.city
+                profile.default_street_address1 = shipping_address.address.line1
+                profile.default_street_address2 = shipping_address.address.line2
+                profile.save()
+
         order_exists = False
         attempt = 1
         while attempt <= 5:
@@ -78,6 +96,7 @@ class StripeWH_Handler:
             try:
                 order = Order.objects.create(
                     full_name=shipping_address.name,
+                    user_profile=profile,
                     email=billing_details.email,
                     phone_number=shipping_address.phone,
                     country=shipping_address.address.country,
