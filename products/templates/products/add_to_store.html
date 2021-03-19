@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="checkout-container">
+        <div class="row w-100">
+            <div class="col-12 mt-2">
+                <hr class="w-50 mx-auto">
+                <h2 class="text-center">Add to Store:</h2>
+                <hr class="w-50 mx-auto">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5 offset-md-1">
+                <!-- enctype to upload image properly -->
+                <form method="POST" action="{% url 'add_product' %}" class="margin-bottom custom-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form |crispy}}
+                    <div class="text-end mt-1">
+                        <button type="submit" class="btn my-btn text-light">Add Image</button>
+                        <a href="{% url 'products' %}" class="btn my-btn text-light">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

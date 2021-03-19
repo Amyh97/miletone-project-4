@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import products, sizes, finish, categories
+from .forms import ProductForm
 
 
 # Create your views here.
@@ -49,3 +50,14 @@ def product_detail(request, product_id):
         'finishes': finishes,
     }
     return render(request, 'products/product_detail.html', context)
+
+
+def add_product(request):
+    """ add products to site """
+    form = ProductForm()
+    template = 'products/add_to_store.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
