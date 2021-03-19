@@ -1,0 +1,14 @@
+<!-- base code from Django/ forms/templates/django/forms/widget/clearable_file_input.html -->
+{% if widget.is_initial %}
+    <p>{{ widget.initial_text }}:</p>
+    <a href="{{ widget.value.url }}">
+        <img width="100" height="100" class="rounded mx-1" src="{{widget.value.url}}">
+    </a>
+    <!-- remove Django code as images are required fields-->
+    <br>
+    {{ widget.input_text }}
+{% endif %}
+<span class="btn my-btn text-light btn-file mx-1 mt-2">
+    Select Image <input id="chosen-image" type="{{ widget.type }}" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>
+</span>
+<strong><p class="text-danger" id="filename"></p></strong>

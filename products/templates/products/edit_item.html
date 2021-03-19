@@ -13,9 +13,15 @@
         <div class="row">
             <div class="col-md-5 offset-md-1 my-4">
                 <!-- enctype to upload image properly -->
-                <form method="POST" action="{% url 'edit_product' product.id %}" class="margin-bottom custom-form" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'edit_product' product.id %}" class="bottom-margin custom-form" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{form |crispy}}
+                    {% for field in form %}
+                        {% if field.name != "image" %}
+                            {{ field | as_crispy_field }}
+                        {% else %}
+                            {{field}}
+                        {% endif %}
+                    {% endfor%}
                     <div class="text-end mt-1">
                         <button type="submit" class="btn my-btn text-light mx-1">Update</button>
                         <a href="{% url 'products' %}" class="btn my-btn text-light mx-1">Cancel</a>
@@ -26,3 +32,13 @@
         </div>
     </div>
 {% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        $('#chosen-image').change(function() {
+            var file = $('#chosen-image')[0].files[0];
+            $('#filename').text(`Image will be set to: ${file.name}`)
+        });
+    </script>
+{% endblock%}
