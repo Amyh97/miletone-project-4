@@ -64,6 +64,16 @@
                                     class="fas fa-arrow-left"></i> Keep Shopping</a>
                         </div>
             </div>
+            {% if request.user.is_superuser %}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="{% url 'edit_product' product.id %}" class="btn my-btn text-light mt-1 mx-auto">Edit Image</a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="{% url 'delete_product' product.id %}" class="btn my-btn text-light mt-1 mx-auto">Delete Image</a>
+                    </div>
+                </div>
+            {% endif %}
         </form>
     </div>
 </div>
