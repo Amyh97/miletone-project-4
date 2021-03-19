@@ -86,7 +86,7 @@
                                     {% if request.user.is_authenticated %}
                                         <!-- different options for admin -->
                                         {% if request.user.is_superuser %}
-                                            <li><a class="dropdown-item" href="#">Manage content</a></li>
+                                            <li><a class="dropdown-item" href="{% url 'add_product' %}">Manage content</a></li>
                                         {% endif %}
                                         <!-- if user is a customer -->
                                         <li><a class="dropdown-item" href="{% url 'profile' %}">My Account</a></li>

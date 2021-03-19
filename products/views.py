@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib import messages
+
 from .models import products, sizes, finish, categories
 from .forms import ProductForm
 
@@ -54,7 +56,21 @@ def product_detail(request, product_id):
 
 def add_product(request):
     """ add products to site """
-    form = ProductForm()
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product has successfully been added\
+                to the website.')
+            return redirect(reverse('add_product'))
+        else:
+            print('should see message')
+            messages.error(request, 'There was in error in the form, please\
+                double check the data and try again.')
+    else:
+        form = ProductForm()
+
     template = 'products/add_to_store.html'
     context = {
         'form': form,

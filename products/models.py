@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import RegexValidator
 
 
 class categories(models.Model):
@@ -20,11 +21,21 @@ class products(models.Model):
     class Meta:
         verbose_name_plural = 'Products'
 
+    # error message when a wrong format entered
+    date_message = 'Please enter YYYY format'
+
+    # desired format
+    date_regex = RegexValidator(
+        regex=r'[1-2][0-9][0-9][0-9]',
+        message=date_message
+    )
+
     name = models.CharField(max_length=50)
     category = models.ForeignKey('categories', null=True,
                                  blank=True, on_delete=models.SET_NULL)
     image = models.ImageField()
-    date = models.CharField(max_length=10, null=True, blank=True)
+    date = models.CharField(validators=[date_regex], max_length=60,
+                            null=True, blank=True)
     description = models.CharField(max_length=500, null=True, blank=True)
 
     def __str__(self):
