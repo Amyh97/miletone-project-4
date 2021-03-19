@@ -65,7 +65,6 @@ def add_product(request):
                 to the website.')
             return redirect(reverse('add_product'))
         else:
-            print('should see message')
             messages.error(request, 'There was in error in the form, please\
                 double check the data and try again.')
     else:
@@ -74,6 +73,34 @@ def add_product(request):
     template = 'products/add_to_store.html'
     context = {
         'form': form,
+    }
+
+    return render(request, template, context)
+
+
+def edit_product(request, product_id):
+    """ edit products on the site """
+    product = get_object_or_404(products, pk=product_id)
+
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f'You have successfully\
+                updated {product.name}!')
+            return redirect(reverse('product_detail', args=[product.id]))
+        else:
+            messages.error(request, f'Could not update {product.name}.\
+                Please double check the form and try again.')
+    else:
+        form = ProductForm(instance=product)
+        messages.info(request, f'You are editing {product.name}')
+
+    template = 'products/edit_item.html'
+
+    context = {
+        'form': form,
+        'product': product,
     }
 
     return render(request, template, context)
