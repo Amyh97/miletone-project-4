@@ -81,7 +81,8 @@ footer a {
     padding-bottom: 10px;
 }
 
-.allauth-form-inner-content input {
+.allauth-form-inner-content input,
+.admin-form {
     border: 1px solid #0d47a1;
     border-radius: 4px;
 }
