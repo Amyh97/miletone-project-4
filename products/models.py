@@ -60,7 +60,7 @@ class finish(models.Model):
         verbose_name_plural = 'Finishes'
 
     # both required fields as needed for pricing
-    finish = models.CharField(max_length=10)
+    finish = models.CharField(max_length=25)
     # 2 decimal places, like currency is written
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
