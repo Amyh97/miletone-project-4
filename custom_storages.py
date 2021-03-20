@@ -1,6 +1,8 @@
 from django.conf import settings
 from storages.backends.s3boto3 import S3Boto3Storage
 
+# used to provide locations for AWS
+
 
 class StaticStorage(S3Boto3Storage):
     location = settings.STATICFILES_LOCATION
