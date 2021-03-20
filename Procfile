@@ -1,0 +1,1 @@
+web: gunicorn amy_hollis_photography.wsgi:application
