@@ -70,6 +70,7 @@ def checkout(request):
                             specs_in_basket['items_by_specs'].items():
                         specs = specs.split('-')
                         product = products.objects.get(id=item_id)
+                        # resue variables in services
                         item_id = specs[0]
                         size_len = specs[2]
                         finish_img = specs[3]
