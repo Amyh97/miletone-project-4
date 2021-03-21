@@ -129,7 +129,7 @@ WSGI_APPLICATION = 'amy_hollis_photography.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if 'DATBASE_URL' in os.environ:
+if 'DATABASE_URL' in os.environ:
     # use postgres in heroku
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
