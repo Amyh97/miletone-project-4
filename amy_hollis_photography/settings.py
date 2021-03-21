@@ -186,6 +186,12 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 if 'USE_AWS' in os.environ:
+    # cache settings
+    # keeps data chached for a long time to help reload website
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2026 20:00:00 GMT',
+        'CacheControl': 'max-age=9468000',
+    }
     # link to AWS S3 bucket
     AWS_STORAGE_BUCKET_NAME = 'amy-hollis-photography'
     AWS_S3_REGION_NAME = 'eu-west-2'
