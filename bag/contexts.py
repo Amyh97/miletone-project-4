@@ -52,6 +52,7 @@ def basket_content(request):
         'delivery': delivery,
         'free_delivery_delta': free_delivery_delta,
         'free_delivery_threshold': settings.FREE_DELIVERY,
-        'grand_total': grand_total
+        'grand_total': grand_total,
+        'test_image': image
     }
     return context
