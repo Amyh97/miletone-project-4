@@ -31,7 +31,6 @@
                     {% for item in basket_items %}
                     <tr>
                         <td><strong>{{ item.name|title }}</strong></td>
-                        <td><h2>{{test_image}}</h2></td>
                         <td><img src="{{ item.image }}" alt="{{ item.name }}" class="overview-img"></td>{{ item.image }}
                         <td>{{ item.size_len }}</td>
                         <td>{{ item.finish_img }}</td>
