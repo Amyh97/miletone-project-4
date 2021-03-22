@@ -95,7 +95,6 @@ TEMPLATES = [
     },
 ]
 
-SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
@@ -143,6 +142,22 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'DEBUG'),
+        },
+    },
+}
 
 
 # Password validation
