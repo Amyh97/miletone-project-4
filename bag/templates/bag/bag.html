@@ -29,7 +29,7 @@
                             {% for item in basket_items %}
                                 <tr>
                                     <td><strong>{{ item.name | title }}</strong></td>
-                                    <td><img src="{{ item.product.image }}" alt="{{ item.name }}" class="overview-img"></td>
+                                    <td><img src="{{ item.image }}" alt="{{ item.name }}" class="overview-img"></td>
                                     <td> {{ item.size_len }}</td>
                                     <td> {{ item.finish_img }}</td>
                                     <td> £{{ item.price }}</td>
@@ -78,25 +78,26 @@
 
 {% block postloadjs %}
 {{ block.super }}
-    <script type="text/javascript">
+    <script>
         // update number in basket
-         $('.update').click(function (e) {
-        var form = $(this).prev('.qty-form');
-        form.submit();
-    })
+        $('.update').click(function(e) {
+            let form = $(this).prev('.qty-form');
+            form.submit();
+            console.log("Update button clicked - form submitted");
+        });
 
-    // remove item from basket
-    $('.remove').click(function (e) {
-        var csrfToken = "{{ csrf_token }}";
-        var itemId = $(this).attr('id').split('remove_')[1];
-        var url = `/bag/remove/${itemId}`;
-        // middleware requited by Django
-        var data = { 'csrfmiddlewaretoken': csrfToken};
+        // remove item from basket
+        $('.remove').click(function(e) {
+            let csrfToken = "{{ csrf_token }}";
+            let itemId = $(this).attr('id').split('remove_')[1];
+            let url = `/bag/remove/${itemId}`;
+            // middleware requited by Django
+            let data = { 'csrfmiddlewaretoken': csrfToken };
 
-        $.post(url, data)
-            .done(function () {
+            $.post(url, data).done(function() {
                 location.reload();
             });
-    })    
+            console.log("Remove button clicked - item removed from bag");
+        });  
     </script>
 {% endblock %}
