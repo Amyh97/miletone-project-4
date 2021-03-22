@@ -120,8 +120,8 @@ def checkout(request):
             try:
                 profile = UserProfile.objects.get(user=request.user)
                 order_form = OrderForm(initial={
-                    'full_name': profile.full_name,
-                    'email': profile.email,
+                    'full_name': profile.default_name,
+                    'email': profile.default_email,
                     'phone_number': profile.default_contact_number,
                     'street_address1': profile.default_street_address1,
                     'street_address2': profile.default_street_address2,
