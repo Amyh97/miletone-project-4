@@ -31,7 +31,6 @@ def basket_item(request, item_id):
         if item_in_basket in basket[item_id]['items_by_specs'].keys():
             # add variable accesses the last item in the item_in_basket dict
             add = int(basket[item_id]['items_by_specs'][item_in_basket])
-            print(add)
             quantity = add + quantity
             basket[item_id]['items_by_specs'][item_in_basket] += quantity - add
             messages.success(request, f'Added {quantity} {name}, {size_len},\
