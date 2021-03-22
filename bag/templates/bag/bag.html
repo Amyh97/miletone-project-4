@@ -5,99 +5,107 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row w-100">
-        <div class="col-12 mt-2">
-            <hr class="w-50 mx-auto">
-            <h2 class="text-center">Basket:</h2>
-            <hr class="w-50 mx-auto">
-        </div>
-        <div class="col-10 offset-1 mt-4">
-            <!-- if basket items will only render the table if there are items in the bag-->
-            {% if basket_items %}
-                <div class="table-responsive bottom-margin">
-                    <table class="table overlay">
-                        <thead>
-                            <th scope="col">Item</th>
-                            <th><!-- create blank gap for image --></th>
-                            <th scope="col">Size/Length</th>
-                            <th scope="col">Finish/ Images</th>
-                            <th scope="col">Price per item</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total Price</th>
-                        </thead>
-                        <tbody>
-                            {% for item in basket_items %}
-                                <tr>
-                                    <td><strong>{{ item.name | title }}</strong></td>
-                                    <td><img src="{{ item.image }}" alt="{{ item.name }}" class="overview-img"></td>
-                                    <td> {{ item.size_len }}</td>
-                                    <td> {{ item.finish_img }}</td>
-                                    <td> £{{ item.price }}</td>
-                                    <td> 
-                                        <form action="{% url 'adjust_basket' item.item_id %}" method="POST" class="qty-form">
-                                            {% csrf_token %}
-                                            <input class="form-control" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="100" >
-                                        </form>
-                                        <a class="update">Update</a>
-                                        <a class="remove text-danger" id="remove_{{ item.item_id }}">Remove</a>
-                                    </td>
-                                    <td>£{{ item.item_total }}</td>
-                                </tr>
-                            {% endfor %}
-                            <tr>
-                                <td colspan="7" class="text-end">
-                                    <p><strong>Basket Total: £{{ total|floatformat:2 }}</strong></p>
-                                    <p> Free delivery on orders over £{{free_delivery_threshold}}</p>
-                                    <p><strong>Delivery: £{{ delivery|floatformat:2 }}</strong></p>
-                                    <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
-                                    {% if free_delivery_delta > 0 %}
-                                        <p class="mb-1 text-danger">
-                                            You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong> more!
-                                        </p>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="7" class="text-end">
-                                    <a href="{% url 'products' %}" class="btn my-btn text-light mt-1 mx-auto"><i
-                                    class="fas fa-arrow-left"></i> Keep Shopping</a>
-                                    <a href="{% url 'checkout' %}" class="btn my-btn text-light mt-1 mx-auto"><i class="fas fa-shopping-basket"></i> Checkout</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                </div>
-            {% else %}
-            <h3 class="mx-4">Your basket is currently empty.</h3>
-             <a href="{% url 'products' %}" class="btn my-btn text-light mx-4"><i class="fas fa-arrow-left"></i> Keep Shopping</a>
-            {% endif %}
-        </div>
+<div class="row w-100">
+    <div class="col-12 mt-2">
+        <hr class="w-50 mx-auto">
+        <h2 class="text-center">Basket:</h2>
+        <hr class="w-50 mx-auto">
     </div>
+    <div class="col-10 offset-1 mt-4">
+        <!-- if basket items will only render the table if there are items in the bag-->
+        {% if basket_items %}
+        <div class="table-responsive bottom-margin">
+            <table class="table overlay">
+                <thead>
+                    <th scope="col">Item</th>
+                    <th>
+                        <!-- create blank gap for image -->
+                    </th>
+                    <th scope="col">Size/Length</th>
+                    <th scope="col">Finish/ Images</th>
+                    <th scope="col">Price per item</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Price</th>
+                </thead>
+                <tbody>
+                    {% for item in basket_items %}
+                    <tr>
+                        <td><strong>{{ item.name | title }}</strong></td>
+                        <td><h1>{{ item }}</h1></td>
+                        <td><img src="{{ item.image }}" alt="{{ item.name }}" class="overview-img"></td>
+                        <td>{{ item.size_len }}</td>
+                        <td>{{ item.finish_img }}</td>
+                        <td>£{{ item.price }}</td>
+                        <td>
+                            <form action="{% url 'adjust_basket' item.item_id %}" method="POST" class="qty-form">
+                                {% csrf_token %}
+                                <input class="form-control" type="number" name="quantity" value="{{ item.quantity }}"
+                                    min="1" max="100">
+                            </form>
+                            <a class="update">Update</a>
+                            <a class="remove text-danger" id="remove_{{ item.item_id }}">Remove</a>
+                        </td>
+                        <td>£{{ item.item_total }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="7" class="text-end">
+                            <p><strong>Basket Total: £{{ total|floatformat:2 }}</strong></p>
+                            <p> Free delivery on orders over £{{free_delivery_threshold}}</p>
+                            <p><strong>Delivery: £{{ delivery|floatformat:2 }}</strong></p>
+                            <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
+                            {% if free_delivery_delta > 0 %}
+                            <p class="mb-1 text-danger">
+                                You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong>
+                                more!
+                            </p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="7" class="text-end">
+                            <a href="{% url 'products' %}" class="btn my-btn text-light mt-1 mx-auto">
+                                <i class="fas fa-arrow-left"></i> Keep Shopping
+                            </a>
+                            <a href="{% url 'checkout' %}" class="btn my-btn text-light mt-1 mx-auto">
+                                <i class="fas fa-shopping-basket"></i> Checkout
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        {% else %}
+        <h3 class="mx-4">Your basket is currently empty.</h3>
+        <a href="{% url 'products' %}" class="btn my-btn text-light mx-4"><i class="fas fa-arrow-left"></i>
+            Keep Shopping
+        </a>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
-    <script>
-        // update number in basket
-        $('.update').click(function(e) {
-            let form = $(this).prev('.qty-form');
-            form.submit();
-            console.log("Update button clicked - form submitted");
+<script>
+    // update number in basket
+    $('.update').click(function () {
+        let form = $(this).prev('.qty-form');
+        form.submit();
+    });
+
+    // remove item from basket
+    $('.remove').click(function () {
+        let csrfToken = "{{ csrf_token }}";
+        let itemId = $(this).attr('id').split('remove_')[1];
+        let url = `/bag/remove/${itemId}`;
+        // middleware requited by Django
+        let data = { 'csrfmiddlewaretoken': csrfToken };
+
+        $.post(url, data).done(function () {
+            location.reload();
         });
-
-        // remove item from basket
-        $('.remove').click(function(e) {
-            let csrfToken = "{{ csrf_token }}";
-            let itemId = $(this).attr('id').split('remove_')[1];
-            let url = `/bag/remove/${itemId}`;
-            // middleware requited by Django
-            let data = { 'csrfmiddlewaretoken': csrfToken };
-
-            $.post(url, data).done(function() {
-                location.reload();
-            });
-            console.log("Remove button clicked - item removed from bag");
-        });  
-    </script>
+    });  
+</script>
 {% endblock %}
