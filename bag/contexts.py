@@ -10,7 +10,7 @@ def basket_content(request):
 
     for item_id, specs_in_basket in basket.items():
         for specs, quantity in specs_in_basket['items_by_specs'].items():
-            specs = specs.split('-')
+            specs = specs.split('_')
             item_id = specs[0]
             name = specs[1]
             size_len = specs[2]
