@@ -35,7 +35,7 @@
                     <select class="form-control rounded-0 w-100 finish_img_opt" required>
                         <option value="" disabled selected>-Select Finish-</option>
                         {% for finish in finishes %}
-                        <option value="{{ finish.price }}{{ finish.finish }}" class="finish_img">{{ finish.friendly_name }}</option>
+                        <option value="{{ finish.price }}{{ finish.friendly_name }}" class="finish_img">{{ finish.friendly_name }}</option>
                         {% endfor %}
                     </select>
                 </div>
