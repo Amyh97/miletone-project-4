@@ -26,6 +26,7 @@ def basket_item(request, item_id):
         item_in_basket = {}
         to_add = (item_id, name, size_len, finish_img, price, image)
         item_in_basket = "-".join(to_add)
+        image = to_add[5]
 
     if item_id in list(basket.keys()):
         if item_in_basket in basket[item_id]['items_by_specs'].keys():
