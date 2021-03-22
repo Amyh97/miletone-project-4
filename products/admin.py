@@ -27,7 +27,7 @@ class CategoriesAdmin(admin.ModelAdmin):
 class FinishAdmin(admin.ModelAdmin):
     # dictates what fields are visable in what order in django admin panel
     list_display = (
-        'finish',
+        'friendly_name',
         'price',
     )
     # orders price low to high

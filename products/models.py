@@ -60,9 +60,13 @@ class finish(models.Model):
         verbose_name_plural = 'Finishes'
 
     # both required fields as needed for pricing
-    finish = models.CharField(max_length=25)
+    finish = models.CharField(max_length=50)
     # 2 decimal places, like currency is written
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    friendly_name = models.CharField(max_length=60, null=True, blank=True)
 
     def __str__(self):
         return self.finish
+
+    def use_friendly_name(self):
+        return self.friendly_name
