@@ -9,6 +9,7 @@ def basket_content(request):
     basket = request.session.get('basket', {})
 
     for item in basket.items():
+        item_id = item[0]
         name = item[1].split(',')[0].split(":")[1].replace("'", "")
         image = item[1].split(',')[1].split(":")[1].replace("'", "")
         size_len = item[1].split(',')[2].split(":")[1].replace("'", "")
@@ -18,6 +19,7 @@ def basket_content(request):
         total = quantity * price
         count += quantity
         basket_items.append({
+            'item_id': item_id,
             'name': name,
             'image': image,
             'size_len': size_len,
