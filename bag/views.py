@@ -1,5 +1,4 @@
-from django.shortcuts import render, redirect, reverse,\
-                        HttpResponse
+from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.contrib import messages
 from decimal import Decimal
 
@@ -51,6 +50,7 @@ def basket_item(request, item_id):
 
 
 def adjust_basket(request, item_id):
+    """ a view to allow users to change the quantity from basket"""
     quantity = int(request.POST.get('quantity'))
     basket = request.session.get('basket', {})
     name = basket[item_id].split(',')[0].split(":")[1].replace("'", "")
@@ -77,4 +77,17 @@ def adjust_basket(request, item_id):
 
 
 def remove_from_basket(request, item_id):
-    print('test')
+    # Remove a specific product in the shopping cart
+    basket = request.session.get('basket', {})
+    name = basket[item_id].split(',')[0].split(":")[1].replace("'", "")
+
+    if item_id in list(basket):
+        try:
+            basket.pop(item_id)
+            request.session['basket'] = basket
+            messages.warning(request, f'{name} has been\
+                            removed from your basket')
+            return HttpResponse(status=200)
+        except Exception as e:
+            messages.error(request, f'Error removing item: {e}')
+            return HttpResponse(status=500)
