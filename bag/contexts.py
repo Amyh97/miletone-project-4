@@ -8,32 +8,23 @@ def basket_content(request):
     count = 0
     basket = request.session.get('basket', {})
 
-    for item_id, specs_in_basket in basket.items():
-        for specs, quantity in specs_in_basket['items_by_specs'].items():
-            specs = specs.split('_')
-            item_id = specs[0]
-            name = specs[1]
-            size_len = specs[2]
-            finish_img = specs[3]
-            price = Decimal(specs[4])
-            image = specs[5]
-            quantity = int(quantity)
-            total += quantity * price
-            item_total = quantity * price
-            count += quantity
-            item_in_basket = "-".join(specs)
-            basket_items.append({
-                'item_id': item_id,
-                'name': name,
-                'size_len': size_len,
-                'finish_img': finish_img,
-                'price': price,
-                'image': image,
-                'item_in_basket': item_in_basket,
-                'item_total': item_total,
-                'quantity': quantity,
-
-            })
+    for item in basket.items():
+        name = item[1].split(',')[0].split(":")[1].replace("'", "")
+        image = item[1].split(',')[1].split(":")[1].replace("'", "")
+        size_len = item[1].split(',')[2].split(":")[1].replace("'", "")
+        finish_img = item[1].split(',')[3].split(":")[1].replace("'", "")
+        price = Decimal(item[1].split(',')[4].split(":")[1].replace("'", ""))
+        quantity = int(item[1].split(',')[5].split(":")[1].replace("']", "").replace("'", "").strip())
+        total = quantity * price
+        count += quantity
+        basket_items.append({
+            'name': name,
+            'image': image,
+            'size_len': size_len,
+            'finish_img': finish_img,
+            'price': price,
+            'quantity': quantity,
+        })
 
     if total < settings.FREE_DELIVERY:
         # decimal used rather than float as float is more susceptible to errors
