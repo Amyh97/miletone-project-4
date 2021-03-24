@@ -73,10 +73,10 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False,
                               on_delete=models.CASCADE,
                               related_name='orderitems')
-    name = models.CharField(max_length=50)
-    item_id = models.CharField(max_length=50)
+    name = models.CharField(max_length=500)
+    item_id = models.CharField(max_length=500)
     image = models.ImageField()
-    size_len = models.CharField(max_length=6)
+    size_len = models.CharField(max_length=25)
     finish_img = models.CharField(max_length=25)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     quantity = models.IntegerField(null=False, blank=False, default=0)
