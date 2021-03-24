@@ -11,7 +11,7 @@ def basket_content(request):
     for item in basket.items():
         item_id = item[0]
         name = item[1].split(',')[0].split(":")[1].replace("'", "")
-        image = item[1].split(',')[1].split(":")[1].replace("'", "")
+        image = item[1].split(',')[1].split(":", 1)[1].replace("'", "")
         size_len = item[1].split(',')[2].split(":")[1].replace("'", "")
         finish_img = item[1].split(',')[3].split(":")[1].replace("'", "")
         price = Decimal(item[1].split(',')[4].split(":")[1].replace("'", ""))

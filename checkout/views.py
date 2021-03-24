@@ -69,7 +69,7 @@ def checkout(request):
                 basket = request.session.get('basket', {})
                 item_id = list(basket.items())[x]
                 name = test.split(",")[0].split(":")[1].replace("'", "")
-                image = test.split(",")[1].split(":")[1].replace("'", "")
+                image = test.split(",")[1].split(":", 1)[1].replace("'", "")
                 size_len = test.split(",")[2].split(":")[1].replace("'", "")
                 finish_img = test.split(',')[3].split(":")[1].replace("'", "")
                 price = Decimal(test.split(',')[4].split(":")[1].replace("'", ""))
