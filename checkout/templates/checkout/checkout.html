@@ -32,12 +32,12 @@
                             {% for item in basket_items %}
                                 <tr>
                                     <td><strong>{{ item.name | title }}</strong></td>
-                                    <td><img src="{{ item.product.image }}" alt="{{ item.name }}" class="overview-img"></td>
+                                    <td><img src="{{ item.image }}" alt="{{ item.name }}" class="overview-img"></td>
                                     <td> {{ item.size_len }}</td>
                                     <td> {{ item.finish_img }}</td>
                                     <td> £{{ item.price }}</td>
                                     <td>{{ item.quantity }}</td>
-                                    <td>£{{ item.item_total }}</td>
+                                    <td>£{{ item.orderitem_total }}</td>
                                 </tr>
                             {% endfor %}
                             <tr>

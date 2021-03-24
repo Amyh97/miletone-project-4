@@ -10,7 +10,6 @@ import json
 from .forms import OrderForm
 from bag.contexts import basket_content
 from .models import OrderItem, Order
-from products.models import products
 from profiles.models import UserProfile
 from profiles.forms import ProfileForm
 
@@ -64,35 +63,32 @@ def checkout(request):
             order.stripe_pid = pid
             order.original_basket = json.dumps(basket)
             order.save()
-            for item_id, specs_in_basket in basket.items():
-                try:
-                    for specs, quantity in\
-                            specs_in_basket['items_by_specs'].items():
-                        specs = specs.split('-')
-                        product = products.objects.get(id=item_id)
-                        # resue variables in services
-                        item_id = specs[0]
-                        size_len = specs[2]
-                        finish_img = specs[3]
-                        price = Decimal(specs[4])
-                        quantity = int(quantity)
-                        orderitem_total = quantity * price
-                        order_item = OrderItem(
-                            order=order,
-                            product=product,
-                            size_len=size_len,
-                            finish_img=finish_img,
-                            price=price,
-                            quantity=quantity,
-                            orderitem_total=orderitem_total,
-                        )
-                        order_item.save()
-                except product.DoesNotExist:
-                    messages.error(request, "Oops! looks like we\
-                        can't find something on the database. Please call\
-                        for assistance.")
-                    order_item.delete()
-                    return(redirect(reverse('bag')))
+            x = 0
+            for item_id in basket.items():
+                test = list(basket.items())[x][1]
+                basket = request.session.get('basket', {})
+                item_id = list(basket.items())[x]
+                name = test.split(",")[0].split(":")[1].replace("'", "")
+                image = test.split(",")[1].split(":")[1].replace("'", "")
+                size_len = test.split(",")[2].split(":")[1].replace("'", "")
+                finish_img = test.split(',')[3].split(":")[1].replace("'", "")
+                price = Decimal(test.split(',')[4].split(":")[1].replace("'", ""))
+                quantity = int(test.split(',')[5].split(":")[1].replace("']", "").replace("'", "").strip())
+                orderitem_total = price * quantity
+                order_item = OrderItem(
+                    item_id=item_id,
+                    name=name,
+                    image=image,
+                    order=order,
+                    size_len=size_len,
+                    finish_img=finish_img,
+                    price=price,
+                    quantity=quantity,
+                    orderitem_total=orderitem_total,
+                )
+                order_item.save()
+                x += 1
+                print(order_item)
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success',

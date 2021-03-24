@@ -31,7 +31,7 @@
                     {% for item in basket_items %}
                     <tr>
                         <td><strong>{{ item.name|title }}</strong></td>
-                        <td><img src="{{ item.image }}" alt="{{ item.name }}" class="overview-img"></td>{{ item.image }}
+                        <td><img src="{{ item.image }}" alt="{{ item.name }}" class="overview-img"></td>
                         <td>{{ item.size_len }}</td>
                         <td>{{ item.finish_img }}</td>
                         <td>£{{ item.price }}</td>
@@ -44,7 +44,7 @@
                             <a class="update">Update</a>
                             <a class="remove text-danger" id="remove_{{ item.item_id }}">Remove</a>
                         </td>
-                        <td>£{{ total }}</td>
+                        <td>£{{ item.orderitem_total }}</td>
                     </tr>
                     {% endfor %}
                     <tr>

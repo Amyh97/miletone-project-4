@@ -73,8 +73,9 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False,
                               on_delete=models.CASCADE,
                               related_name='orderitems')
-    product = models.ForeignKey(products, null=False, blank=False,
-                                on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    item_id = models.CharField(max_length=50)
+    image = models.ImageField()
     size_len = models.CharField(max_length=6)
     finish_img = models.CharField(max_length=25)
     price = models.DecimalField(max_digits=6, decimal_places=2)
@@ -92,5 +93,5 @@ class OrderItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f' {self.product.name}, {self.size_len}, {self.finish_img}\
+        return f' {self.name}, {self.size_len}, {self.finish_img}\
                 on order {self.order.order_number}'

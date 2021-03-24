@@ -16,7 +16,8 @@ def basket_content(request):
         finish_img = item[1].split(',')[3].split(":")[1].replace("'", "")
         price = Decimal(item[1].split(',')[4].split(":")[1].replace("'", ""))
         quantity = int(item[1].split(',')[5].split(":")[1].replace("']", "").replace("'", "").strip())
-        total = quantity * price
+        orderitem_total = price * quantity
+        total += orderitem_total
         count += quantity
         basket_items.append({
             'item_id': item_id,
@@ -26,6 +27,7 @@ def basket_content(request):
             'finish_img': finish_img,
             'price': price,
             'quantity': quantity,
+            'orderitem_total': orderitem_total,
         })
 
     if total < settings.FREE_DELIVERY:
