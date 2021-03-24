@@ -54,7 +54,7 @@ def adjust_basket(request, item_id):
     quantity = int(request.POST.get('quantity'))
     basket = request.session.get('basket', {})
     name = basket[item_id].split(',')[0].split(":")[1].replace("'", "")
-    image = basket[item_id].split(',')[1].split(":")[1].replace("'", "")
+    image = basket[item_id].split(',')[1].split(":", 1)[1].replace("'", "")
     size_len = basket[item_id].split(',')[2].split(":")[1].replace("'", "")
     finish_img = basket[item_id].split(',')[3].split(":")[1].replace("'", "")
     price = Decimal(basket[item_id].split(',')[4].split(":")[1].replace("'", ""))
