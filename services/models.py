@@ -7,7 +7,7 @@ class Services(models.Model):
 
     service = models.CharField(max_length=50)
     image = models.ImageField()
-    description = models.CharField(max_length=150, null=True, blank=True)
+    description = models.CharField(max_length=500, null=True, blank=True)
 
     def __str__(self):
         return self.service
