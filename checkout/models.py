@@ -73,8 +73,8 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False,
                               on_delete=models.CASCADE,
                               related_name='orderitems')
-    name = models.CharField(max_length=500)
-    item_id = models.CharField(max_length=500)
+    name = models.CharField(max_length=20000)
+    item_id = models.CharField(max_length=20000)
     image = models.ImageField()
     size_len = models.CharField(max_length=25)
     finish_img = models.CharField(max_length=25)

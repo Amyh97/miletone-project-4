@@ -8,7 +8,7 @@ import stripe
 import json
 
 from .forms import OrderForm
-from bag.contexts import basket_content
+from bag.contexts import stripe_basket
 from .models import OrderItem, Order
 from profiles.models import UserProfile
 from profiles.forms import ProfileForm
@@ -23,7 +23,7 @@ def cache_checkout_data(request):
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
-            'basket': json.dumps(request.session.get('basket', {})),
+            'basket': stripe_basket,
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
@@ -65,15 +65,15 @@ def checkout(request):
             order.save()
             x = 0
             for item_id in basket.items():
-                test = list(basket.items())[x][1]
+                specs = list(basket.items())[x][1]
                 basket = request.session.get('basket', {})
                 item_id = list(basket.items())[x]
-                name = test.split(",")[0].split(":")[1].replace("'", "")
-                image = test.split(",")[1].split(":", 1)[1].replace("'", "")
-                size_len = test.split(",")[2].split(":")[1].replace("'", "")
-                finish_img = test.split(',')[3].split(":")[1].replace("'", "")
-                price = Decimal(test.split(',')[4].split(":")[1].replace("'", ""))
-                quantity = int(test.split(',')[5].split(":")[1].replace("']", "").replace("'", "").strip())
+                name = specs.split(",")[0].split(":")[1].replace("'", "")
+                image = specs.split(",")[1].split(":", 1)[1].replace("'", "")
+                size_len = specs.split(",")[2].split(":")[1].replace("'", "")
+                finish_img = specs.split(',')[3].split(":")[1].replace("'", "")
+                price = Decimal(specs.split(',')[4].split(":")[1].replace("'", ""))
+                quantity = int(specs.split(',')[5].split(":")[1].replace("']", "").replace("'", "").strip())
                 orderitem_total = price * quantity
                 order_item = OrderItem(
                     item_id=item_id,
@@ -88,7 +88,6 @@ def checkout(request):
                 )
                 order_item.save()
                 x += 1
-                print(order_item)
 
             request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success',
@@ -102,7 +101,7 @@ def checkout(request):
             messages.error(request, 'There is nothing in your basket')
             return redirect(reverse('products'))
 
-        current_basket = basket_content(request)
+        current_basket = stripe_basket(request)
         basket_total = current_basket['grand_total']
         # stripe required int
         stripe_total = round(basket_total * 100)
@@ -122,6 +121,7 @@ def checkout(request):
                     'street_address1': profile.default_street_address1,
                     'street_address2': profile.default_street_address2,
                     'town_or_city': profile.default_town,
+                    'postcode': profile.default_postcode,
                     'country': profile.default_counrty,
                 })
             except UserProfile.DoesNotExist:
