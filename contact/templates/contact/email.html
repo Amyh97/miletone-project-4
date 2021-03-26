@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="row w-100">
+        <div class="col-12 mt-2">
+            <hr class="w-50 mx-auto">
+            <h2 class="text-center">Contact:</h2>
+            <hr class="w-50 mx-auto">
+        </div>
+    </div>
+    <div class="row h-100">
+        <div class="col-12 mx-auto">
+            <form action="{% url 'contact' %}" method="POST" id="contact-form">
+                <p class="text-ceter">Need something else? Send me an email letting me know what you want.</p>
+                <!-- csrf token for Django security -->
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn my-btn text-light">Email Photographer</button>
+            </form>
+        </div>
+    </div>
+    {% endblock %}

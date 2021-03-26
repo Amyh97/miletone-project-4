@@ -30,6 +30,7 @@ urlpatterns = [
     path('bag/', include('bag.urls')),
     path('checkout/', include('checkout.urls')),
     path('services/', include('services.urls')),
+    path('contact/', include('contact.urls')),
     path('404/', handler404),
     path('500/', handler500),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
