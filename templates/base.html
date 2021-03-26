@@ -74,7 +74,7 @@
                                 <a class="nav-link" href="{% url 'products' %}"><i class="far fa-images fa-lg"></i> Products</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#"><i class="fas fa-camera fa-lg"></i> Services</a>
+                                <a class="nav-link" href="{% url 'services' %}"><i class="fas fa-camera fa-lg"></i> Services</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -148,6 +148,8 @@
     </footer>
 
     {% block postloadjs %}
+
+    {% include 'includes/price_script.html' %}
         <script type="text/javascript">
         // show toasts
         $(document).ready(function() {
@@ -159,47 +161,6 @@
         $(".btn-close").click(function(){
             $('.toast').toast('hide');
         });
-        </script>
-        
-        <script type="text/javascript">
-            $('.calculate').click(function(event) {
-                event.preventDefault();
-                // clear last vlaue calculated by this function 
-                $('.price').empty();
-                // initialize varibles
-                var size_len = 0
-                var finish_img = 0
-                // already set to 0 so will pick up new value
-                if (size_len == 0) {                   
-                    var size_len = parseFloat($('.size_len_opt option:selected').val().slice(0,4));
-                    var size_len_name = $('.size_len_opt option:selected').val().slice(4,);        
-                };
-
-                if (finish_img == 0){
-                    var finish_img = parseFloat($('.finish_img_opt option:selected').val().slice(0,4));
-                    var finish_img_name = $('.finish_img_opt option:selected').val().slice(4,); 
-                };
-                
-                //add the two parts of cost together
-                cost = size_len + finish_img
-                // present the cost as a readable price
-                price = cost.toFixed(2)
-                
-                // toFixed returns string so NaN is also a string
-                if (price == "NaN"){
-                    $('.price').append("Please ensure you have selected both a size and a finish")
-                }else{
-                    //return price from calculations to the page for user
-                    $('.price').append("The total for these options is £"+price+ " per item")
-                    $('.GetPrice').val(price)
-                    $('.SetSizeLen').val(size_len_name)
-                    $('.SetFinishImg').val(finish_img_name);
-                };
-                // use cost here as type is number
-                if (cost != 0) {
-                    $('.AddToBasket').removeAttr("disabled")
-                }
-            });
         </script>
     {% endblock %}
 </body>
