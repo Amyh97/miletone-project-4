@@ -18,6 +18,9 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
+from amy_hollis_photography.views import handler404, handler500
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
@@ -27,4 +30,9 @@ urlpatterns = [
     path('bag/', include('bag.urls')),
     path('checkout/', include('checkout.urls')),
     path('services/', include('services.urls')),
+    path('404/', handler404),
+    path('500/', handler500),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = 'amy_hollis_photography.views.handler404'
+handler500 = 'amy_hollis_photography.views.handler500'
