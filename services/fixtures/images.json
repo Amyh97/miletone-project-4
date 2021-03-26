@@ -1,0 +1,1 @@
+[{"pk":1,"model":"services.images","fields":{"images":"10 prints","price":10}},{"pk":2,"model":"services.images","fields":{"images":"Low-resolution Disk","price":25}},{"pk":3,"model":"services.images","fields":{"images":"High-resolution Disk","price":50}},{"pk":4,"model":"services.images","fields":{"images":"Photo Album","price":30}}]
