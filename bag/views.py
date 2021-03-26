@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.contrib import messages
 from decimal import Decimal
 
+from products.models import sizes, finish
+from services.models import Lengths, Images
+
 
 def bag(request):
     """ a view to return bag content """
@@ -9,14 +12,28 @@ def bag(request):
     return render(request, 'bag/bag.html')
 
 
+def get_price_from_specs(request, size_len, finish_img):
+    if request.POST:
+        item_type = request.POST.get('item_type')
+        if item_type == "product":
+            size_price = sizes.objects.get(sizes=size_len)
+            finish_price = finish.objects.get(finish=finish_img)
+            return size_price.price + finish_price.price
+        else:
+            length_price = Lengths.objects.get(length=size_len)
+            images_price = Images.objects.get(images=finish_img)
+            return length_price.price + images_price.price
+
+
 def basket_item(request, item_id):
     """ a view to add items to a bag based on specs """
     if request.POST:
         name = request.POST.get('name')
         quantity = int(request.POST.get('quantity'))
-        price = request.POST.get('price')
         size_len = request.POST.get('size_len')
         finish_img = request.POST.get('finish_img')
+        price = get_price_from_specs(request, size_len, finish_img)
+        print(price)
         """combine item id, size_len and finish_img to ensure each item
         (product or service) will be treated individually """
         item_id = request.POST.get('id')+size_len+finish_img
