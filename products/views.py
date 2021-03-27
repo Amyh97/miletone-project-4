@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 from .models import products, sizes, finish, categories
 from .forms import ProductForm
@@ -11,14 +12,24 @@ def products_page(request):
     """ A view to display all images for sale"""
     category = categories.objects.all()
     product = products.objects.all()
+    search = None
 
     if request.GET:
-        if 'CategorySort' in request.GET:
-            CategorySort = request.GET['CategorySort']
+        if 'Category' in request.GET:
+            Category = request.GET['Category']
             # double underscore is common Django syntax for queries
-            product = products.objects.filter(category__name=CategorySort)
+            product = products.objects.filter(category__name=Category)
         else:
             product = products.objects.all()
+
+        if 'search' in request.GET:
+            search = request.GET['search']
+            if not search:
+                messages.error(request, "You didn't search anything!")
+                return redirect(reverse('products'))
+
+            query = Q(name__icontains=search) | Q(description__icontains=search)
+            product = product.filter(query)
 
     page = request.GET.get('page', 1)
 
@@ -33,6 +44,7 @@ def products_page(request):
     context = {
         'products': product,
         'categories': category,
+        'search': search,
 
     }
 

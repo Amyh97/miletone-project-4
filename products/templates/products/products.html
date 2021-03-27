@@ -6,12 +6,26 @@
 
 {% block content %}
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-7">
         <h2 class="mt-2 text-center">Products</h2>
         <hr class="w-75 mx-auto">
     </div>
-    <div class="col-md-2">
-        <div class="btn-group">
+    <div class="col-md-5">
+        <div class="row">
+            <div class="col-6">
+                <form method="GET" action="{% url 'products' %}" class="mt-2">
+                    <div class="input-group w-100">
+                        <input class="form-control border border-black rounded-0" type="text" name="search" placeholder="Search for a photo">
+                        <div class="input-group-append">
+                            <button class="form-control btn my-btn text-light" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-6">
+                <div class="btn-group">
             <button class="btn my-btn text-light mt-4 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Filter by Category
             </button>
@@ -21,10 +35,12 @@
                 </li>
                 {% for category in categories %}
                     <li class="mb-1">
-                        <a href="{% url 'products' %}?CategorySort={{ category.name }}" class="fliter-link">{{ category.friendly_name }}</a>
+                        <a href="{% url 'products' %}?Category={{ category.name }}" class="fliter-link">{{ category.friendly_name }}</a>
                     </li>
                 {% endfor %}
             </ul>
+        </div>
+            </div>
         </div>
     </div>
 </div>
