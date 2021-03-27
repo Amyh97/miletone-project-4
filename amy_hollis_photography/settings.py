@@ -110,7 +110,6 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # tells allauth we went to allow authentication from either usernames or email
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 # email is needed to create an account
@@ -223,4 +222,15 @@ STRIPE_WH_SECRET = os.getenv('MS4_STRIPE_WH_SECRET', '')
 
 # emails
 
-DEFAULT_FROM_EMAIL = 'amyhollisphotography@example.com'
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'amyhollisphotography@example.com'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gmail.com'
+    # config vars in Heroku
+    EMAIL_HOST_USER = os.environ.get(EMAIL_HOST_USER)
+    EMAIL_HOST_PASS = os.environ.get(EMAIL_HOST_PASS)
+    DEFAULT_FROM_EMAIL = os.environ.get(EMAIL_HOST_USER)
