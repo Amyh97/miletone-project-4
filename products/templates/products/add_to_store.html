@@ -10,10 +10,26 @@
                 <hr class="w-50 mx-auto">
             </div>
         </div>
+        <div class="row mx-auto w-50">
+            <div class="btn-group">
+            <button class="btn my-btn text-light w-50 mt-4 dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Filter
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="{% url 'add_product' %}" class="fliter-link">Add Product</a>
+                </li>
+                <li class="mb-1">
+                    <a href="{% url 'add_service' %}">Add Service</a>
+                </li>
+            </ul>
+        </div>
+        </div>
         <div class="row">
-            <div class="col-md-5 offset-md-1 my-4">
+            <div class="col-md-6 offset-md-3 my-4">
                 <!-- enctype to upload image properly -->
-                <form method="POST" action="{% url 'add_product' %}" class="bottom-margin custom-form" enctype="multipart/form-data">
+                <form method="POST" action="{% if product %}{% url 'add_product' %}{% else %}{% url 'add_service' %}{% endif %}" class="bottom-margin custom-form" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
                         {% if field.name != "image" %}

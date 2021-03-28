@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-5 offset-md-1 my-4">
+            <div class="col-lg-6 offset-lg-3 col-md-10 offset-md-1 my-4">
                 <!-- enctype to upload image properly -->
                 <form method="POST" action="{% url 'edit_product' product.id %}" class="bottom-margin custom-form" enctype="multipart/form-data">
                     {% csrf_token %}

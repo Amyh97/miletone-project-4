@@ -6,20 +6,31 @@
 
 {% block content %}
 <div class="row h-100">
-    <div class="col-sm-12 col-lg-3 offset-lg-1 mt-5">
+    <div class="col-sm-12 col-lg-3 offset-lg-1 mt-5 image">
         <img src="{{ product.image.url }}" alt="{{ product.name }}" class="my-auto product-image">
+        <br>
+        <a href="{{product.image.url}}" target="_blank" class="img-link">Click Here to view the image</a>
     </div>
-    <div class="col-sm-12 col-lg-3 mt-5">
+    <div class="col-sm-12 col-lg-3 mt-5 info">
         <h2 class="text-capitalize">{{ product.name }}</h2>
         <p>Date of capture: {{ product.date }}</p>
         <p>Description: {{ product.description }}</p>
+        {% if request.user.is_superuser %}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <a href="{% url 'edit_product' product.id %}" class="text-primary mt-1 mx-auto">Edit Image</a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="{% url 'delete_product' product.id %}" class="text-danger mt-1 mx-auto">Delete Image</a>
+                    </div>
+                </div>
+            {% endif %}
     </div>
-    <div class="col-sm-12 col-lg-3 mt-5">
+    <div class="col-sm-12 col-lg-3 mt-5 specs">
         <form action="{% url 'basket_item' product.id %}" method="POST" name="AddToBasket">
             {% csrf_token %}
             <p>The price is calculated by the size and finish of the image, select your prefered size and finish to
                 calculate the price then add to basket.</p>
-            <p class="price fw-bold"></p>
             <div class="row">
                 <div class="col-6">
                     <p><strong>Size:</strong></p>
@@ -41,6 +52,7 @@
                 </div>
             </div>
             <button class="btn my-btn text-light mt-5 calculate">Calculate Price</button>
+            <p class="price fw-bold"></p>
             <div class="col-sm-12 col-lg-3 mt-5">
                 <div class="form-group row buttons">
                     <div class="input-group">
@@ -56,25 +68,15 @@
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
             </div>
-            <div class="row">
-                        <div class="col-sm-6">
+            <div class="row mb-5">
+                        <div class="col-6">
                             <input class="btn my-btn text-light mt-1 AddToBasket" type="submit" value="Add to basket" disabled>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-6">
                             <a href="{% url 'products' %}" class="btn my-btn text-light mt-1 mx-auto"><i
                                     class="fas fa-arrow-left"></i> Keep Shopping</a>
                         </div>
             </div>
-            {% if request.user.is_superuser %}
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a href="{% url 'edit_product' product.id %}" class="btn my-btn text-light mt-1 mx-auto">Edit Image</a>
-                    </div>
-                    <div class="col-sm-6">
-                        <a href="{% url 'delete_product' product.id %}" class="btn my-btn text-light mt-1 mx-auto">Delete Image</a>
-                    </div>
-                </div>
-            {% endif %}
         </form>
     </div>
 </div>

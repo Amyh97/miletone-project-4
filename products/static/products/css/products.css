@@ -1,9 +1,15 @@
 /*--- products page ---*/
-.photos {
-    clear:both;
-    line-height:0;
-    column-count:4;
-    columns: gap 2px;;
+.card {
+    max-height: 250px;
+}
+.card-body {
+    z-index: 10;
+}
+.card-img-top {
+    height: 200px;
+    width: 18rem;
+    object-fit: cover;
+    object-position: center;   
 }
 
 .fliter-link {
@@ -13,7 +19,14 @@
 
 /*--- pagination ---*/
 .pagination {
+    margin-top: 1rem;
     margin-bottom: 3rem;
+    margin-left: -2rem;
+    margin-right: -2rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    padding: 0;
+    justify-content: center;
 }
 
 .pagination li {
@@ -21,14 +34,18 @@
 }
 
 .pagination li a {
-    color: #fff;
+    color: #0d47a1;
     font-size: 18px;
 }
 
 .active span {
-    color: #fff;
+    color: #0d47a1;
     font-weight: 700;
     font-size: 18px;
+}
+
+.pagination-placeholder {
+    height: 4rem;
 }
 
 /*--- product detail page ---*/
@@ -36,4 +53,52 @@
 .product-image {
     width: 75%;
     border: 2px solid #fff;
+    margin-left: 15%;
+}
+
+.img-link {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    margin-left: 15%;
+    margin-right: -2rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #0d47a1;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 4px;
+    justify-content: center; 
+}
+
+/*--- media queries ---*/
+/*-- large tablet ---*/
+@media(min-height:1020px) {
+    /*--- use important to override bootstrap ---*/
+    .image, .info {
+        width: 40% !important;
+        margin-left: 0.5rem !important;
+    }
+    .specs {
+        width: 40% !important;
+        margin-left: 25% !important;
+    }
+}
+/*--- tablet size ---*/
+@media(max-width:800px) {
+    
+}
+
+/*--- mobile ---*/
+@media(max-width:420px) {
+    .btn-group {
+        width: 95%;
+        left: 2.5%;
+    }
+}
+/*-- iphone 6/7/8 ---*/
+@media(max-width:415px) {
+    
+}
+/*-- mobile ---*/
+@media(max-width:340px) {
+    
 }
