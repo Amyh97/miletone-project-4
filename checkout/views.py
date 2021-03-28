@@ -8,7 +8,7 @@ import stripe
 import json
 
 from .forms import OrderForm
-from bag.contexts import stripe_basket
+from bag.contexts import stripe_basket, basket_content
 from .models import OrderItem, Order
 from profiles.models import UserProfile
 from profiles.forms import ProfileForm
@@ -23,10 +23,11 @@ def cache_checkout_data(request):
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
-            'basket': stripe_basket,
+            'basket': basket_content,
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
+        print(basket_content)
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be \
@@ -67,7 +68,7 @@ def checkout(request):
             for item_id in basket.items():
                 specs = list(basket.items())[x][1]
                 basket = request.session.get('basket', {})
-                item_id = list(basket.items())[x]
+                item_id = list(basket.items())[x][0]
                 name = specs.split(",")[0].split(":")[1].replace("'", "")
                 image = specs.split(",")[1].split(":", 1)[1].replace("'", "")
                 size_len = specs.split(",")[2].split(":")[1].replace("'", "")

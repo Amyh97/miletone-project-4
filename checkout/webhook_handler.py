@@ -5,7 +5,6 @@ from django.template.loader import render_to_string
 from django.conf import settings
 
 from .models import Order, OrderItem
-from products.models import products
 from profiles.models import UserProfile
 
 import json
@@ -35,7 +34,7 @@ class StripeWH_Handler:
             body,
             settings.DEFAULT_FROM_EMAIL,
             # list format as there can be multiple recipients
-            [customer_email]
+            [customer_email, ]
         )
 
     def handle_event(self, event):
@@ -119,8 +118,10 @@ class StripeWH_Handler:
                     content=f'Webhook received: {event["type"]}|\
                         Order is in database', status=200)
         else:
+            print('order does not exist')
             order = None
             try:
+                print('trying')
                 order = Order.objects.create(
                     full_name=shipping_address.name,
                     user_profile=profile,
@@ -135,29 +136,37 @@ class StripeWH_Handler:
                     original_basket=basket,
                     stripe_pid=pid,
                 )
-                for item_id, specs_in_basket in json.loads(basket).items():
-                    for specs, quantity in\
-                            specs_in_basket['items_by_specs'].items():
-                        specs = specs.split('-')
-                        product = products.objects.get(id=item_id)
-                        item_id = specs[0]
-                        size_len = specs[2]
-                        finish_img = specs[3]
-                        price = Decimal(specs[4])
-                        quantity = int(quantity)
-                        orderitem_total = quantity * price
-                        order_item = OrderItem(
-                            order=order,
-                            product=product,
-                            size_len=size_len,
-                            finish_img=finish_img,
-                            price=price,
-                            quantity=quantity,
-                            orderitem_total=orderitem_total,
-                        )
-                        order_item.save()
+                x = 0
+                for item_id in json.loads(basket).items():
+                    specs = list(basket.items())[x][1]
+                    item_id = list(basket.items())[x]
+                    name = specs.split(",")[0].split(":")[1].replace("'", "")
+                    image = specs.split(",")[1].split(":", 1)[1].replace("'", "")
+                    size_len = specs.split(",")[2].split(":")[1].replace("'", "")
+                    finish_img = specs.split(',')[3].split(":")[1].replace("'", "")
+                    price = Decimal(specs.split(',')[4].split(":")[1].replace("'", ""))
+                    quantity = int(specs.split(',')[5].split(":")[1].replace("']", "").replace("'", "").strip())
+                    orderitem_total = price * quantity
+                    order_item = OrderItem(
+                        item_id=item_id,
+                        name=name,
+                        image=image,
+                        order=order,
+                        size_len=size_len,
+                        finish_img=finish_img,
+                        price=price,
+                        quantity=quantity,
+                        orderitem_total=orderitem_total,
+                    )
+                    print('item added')
+                    order_item.save()
+
+                    x += 1
             except Exception as e:
+                print('still not fixed it')
+                print(e)
                 if order:
+                    print('problems just keep coming')
                     # delete order if anything goes wrong
                     order.delete()
                 return HttpResponse(
@@ -166,6 +175,7 @@ class StripeWH_Handler:
                     status=500)
         # order has been created in webhook, so can now send email
         self.__send_email_confirmation__(order)
+        print('sent here')
         return HttpResponse(
                     content=f'Webhook received: {event["type"]}|\
                         Order created in webhook', status=200)

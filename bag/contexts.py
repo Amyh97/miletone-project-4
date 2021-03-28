@@ -49,11 +49,12 @@ def basket_content(request):
         'free_delivery_threshold': settings.FREE_DELIVERY,
         'grand_total': grand_total,
     }
+
     return context
 
 
 def stripe_basket(request):
-    basket_items = []
+    stripe_items = []
     total = 0
     count = 0
     basket = request.session.get('basket', {})
@@ -65,7 +66,7 @@ def stripe_basket(request):
         orderitem_total = price * quantity
         total += orderitem_total
         count += quantity
-        basket_items.append({
+        stripe_items.append({
             'item_id': item_id,
             'price': price,
             'quantity': quantity,
@@ -83,7 +84,7 @@ def stripe_basket(request):
     grand_total = delivery + total
 
     context = {
-        'basket_items': basket_items,
+        'basket_items': stripe_items,
         'total': total,
         'count': count,
         'delivery': delivery,
@@ -91,4 +92,5 @@ def stripe_basket(request):
         'free_delivery_threshold': settings.FREE_DELIVERY,
         'grand_total': grand_total,
     }
+
     return context

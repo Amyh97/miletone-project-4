@@ -33,7 +33,6 @@ def basket_item(request, item_id):
         size_len = request.POST.get('size_len')
         finish_img = request.POST.get('finish_img')
         price = get_price_from_specs(request, size_len, finish_img)
-        print(price)
         """combine item id, size_len and finish_img to ensure each item
         (product or service) will be treated individually """
         item_id = request.POST.get('id')+size_len+finish_img
