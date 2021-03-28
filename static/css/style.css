@@ -74,7 +74,7 @@ footer a {
 /*--- allauth templates ---*/
 
 .account, .custom-form {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.8);
     padding-bottom: 10px;
 }
 
@@ -146,7 +146,10 @@ footer a {
     .my-container {
         height: calc(100vh - 104px);
         position: absolute;
-        top: 70px;
+        top: 100px;
+    }
+    .message-container {
+        width: 90%;
     }
 }
 
