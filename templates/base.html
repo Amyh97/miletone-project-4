@@ -53,18 +53,15 @@
         <!-- bootstrap navbar with row, h1 and cols added -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid row no-gutters h-100">
-                <div class="col-md-2 my-auto">
+                <div class="col-md-2 col-6 my-auto">
                     <a class="navbar-brand logo" aria-label="Letter A logo" href="{% url 'home' %}"></a>
                 </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                <button class="navbar-toggler col-6" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="col-md-5 d-none d-lg-block my-auto">
-                    <h1 class="title">Amy Hollis Photography</h1>
-                </div>
-                <div class="col-md-5 offset-md-1 my-auto">
+                <div class="col-md-6 offset-md-5 my-auto menu">
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -141,9 +138,8 @@
     
     <footer>
         <div class="row bg-light">
-            <div class="col-md-4 col-sm-5"><p><i class="far fa-copyright"></i> Amy Hollis 2021</p> </div>
-            <div class="col-md-4 col-sm-0"></div>
-            <div class="col-md-4 col-sm-5"><i class="fab fa-flickr"></i> <a href="https://www.flickr.com/photos/amyholllis2012/" target="_blank">Follow on Flickr</a></div>
+            <div class="col-md-2 col-6 offset-md-4"><p><i class="far fa-copyright"></i> Amy Hollis 2021</p> </div>
+            <div class="col-md-2 col-6"><i class="fab fa-flickr"></i> <a href="https://www.flickr.com/photos/amyholllis2012/" target="_blank">Follow on Flickr</a></div>
         </div>
     </footer>
 

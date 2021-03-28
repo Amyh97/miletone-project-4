@@ -7,13 +7,6 @@ body {
 
 /*--- base.html header ---*/
 
-.title {
-    font-family: 'Satisfy', cursive;
-    text-align: center;
-    font-size: 52px;
-    color: #0d47a1;
-}
-
 header {
     height: 88px;
     position: fixed;
@@ -27,6 +20,10 @@ header {
     height: 86px;
     display: block;
     margin-left: 3.25rem;
+}
+
+.menu {
+    margin-left: 0;
 }
 
 .nav-link i {
@@ -123,4 +120,37 @@ footer a {
     min-height: 100%;
     opacity: 0;
     cursor: pointer;
+}
+
+
+/*--- media queries ---*/
+/*-- large tablet sixe --*/
+@media(min-width:900px) {
+    .menu {
+        margin-left: 100px;
+    }
+}
+/*--- tablet size ---*/
+@media(max-width:800px) {
+    .logo {
+        background-size: cover;
+        width: 86px;
+    }
+}
+
+/*--- mobile ---*/
+@media(max-width:400px) {
+    .logo {
+        margin: 0;
+    }
+    .my-container {
+        height: calc(100vh - 104px);
+        position: absolute;
+        top: 70px;
+    }
+}
+
+/*-- mobile ---*/
+@media(max-width:340px) {
+    
 }
