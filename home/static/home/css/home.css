@@ -9,13 +9,13 @@
 .home-opt {
     margin-top: 2rem;
     display: block;
-    border-radius: 50%;
+    border-radius: 4px;
     color: #fbfbfb;
-    background-color: rgba(13, 71, 161, 0.5);
+    background-color: #0d47a1;
     text-align: center;
     font-size: 1.5rem;
     text-decoration: none;
-    height: 10rem;
+    height: 8rem;
     width: 10rem;
 }
 
@@ -27,16 +27,23 @@
     color: #fbfbfb;
     text-decoration: none;
     display: inline-block;
-    padding-top: 36%;
+    padding-top: 25%;
     height: 100%;
     width: 100%;
 }
 
 #contact {
-    padding-top: 20%;
+    padding-top: 10%;
 }
 
 /*--- media queries ---*/
+/*--- computer only ---*/
+@media(min-width:1050px) {
+    .options {
+        margin-right: 300px;
+        margin-left: 300px
+    }
+}
 /*-- large tablet ---*/
 @media(max-width: 1050px) {
     

@@ -13,11 +13,11 @@
         <h2 class="text-capitalize">{{ service.service }}</h2>
         <p>Description: {{ service.description }}</p>
         {% if request.user.is_superuser %}
-                <div class="row">
-                    <div class="col-sm-6">
+                <div class="row mb-5">
+                    <div class="col-6">
                         <a href="{% url 'edit_service' service.id %}" class="text-primary mt-1 mx-auto">Edit Service</a>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-6">
                         <a href="{% url 'delete_service' service.id %}" class="text-danger mt-1 mx-auto">Delete Service</a>
                     </div>
                 </div>
