@@ -46,14 +46,14 @@ def add_service(request):
             service = form.save()
             messages.success(request, 'Service has successfully been added\
                 to the website.')
-            return redirect(reverse('services_detail', args=[int(service.id)]))
+            return redirect(reverse('service_detail', args=[int(service.id)]))
         else:
             messages.error(request, 'There was in error in the form, please\
                 double check the data and try again.')
     else:
         form = ServiceForm()
 
-    template = 'products/add_to_store.html'
+    template = 'services/add_service.html'
     context = {
         'form': form,
     }
@@ -83,7 +83,7 @@ def edit_service(request, service_id):
                 Please double check the form and try again.')
     else:
         form = ServiceForm(instance=service)
-        messages.info(request, f'You are editing {service.name}')
+        messages.info(request, f'You are editing {service.service}')
 
     template = 'products/edit_item.html'
 
@@ -104,6 +104,6 @@ def delete_service(request, service_id):
 
     service = get_object_or_404(Services, pk=service_id)
     service.delete()
-    messages.warning(request, f'{service.name} has been removed\
+    messages.warning(request, f'{service.service} has been removed\
         from the website')
     return redirect(reverse('services'))
