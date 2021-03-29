@@ -16,15 +16,15 @@
 <div class="row">
     <div class="order-review col-8 offset-2">
         <div class="row">
-            <div class="customer-details col-6">
-                <p><strong>Order Number:</strong> {{order.order_number }}</p>
+            <div class="customer-details col-md-6">
+                <p class="order-number"><strong>Order Number:</strong> {{order.order_number }}</p>
                 <p><strong>Order Date:</strong> {{order.date }}</p>
                 <p><strong>Customer Name:</strong> {{order.full_name }}</p>
                 <p><strong>Email Address:</strong> {{ order.email }}</p>
                 <p><strong>Contact Number:</strong> {{order.phone_number }}</p>
                 
             </div>
-            <div class="address col-6">
+            <div class="address col-md-6">
                 <p><strong>Address Line 1:</strong> {{order.street_address1 }}</p>
                 {% if order.street_address2 %}
                 <p><strong>Address Line 2:</strong> {{order.street_address2 }}</p>
@@ -58,8 +58,7 @@
 
         </div>
     </div>
-</div>
-<div class="row mx-1">
+    <div class="row mb-5">
     <div class="col">
         {% if not from_profile %}
             <a href="{% url 'home' %}" class="btn my-btn text-light mt-1 mx-auto">
@@ -71,5 +70,6 @@
             </a>
         {% endif %}
     </div>
+</div>
 </div>
 {% endblock %}

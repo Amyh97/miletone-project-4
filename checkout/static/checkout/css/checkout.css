@@ -50,7 +50,7 @@ select option[value=""] {
 }
 
 table, form, .overview {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .order-form, form{
@@ -102,5 +102,47 @@ a {
 .order-review {
     border: 1px solid #0d47a1;
     border-radius: 4px;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/*--- media queries ---*/
+/*-- large tablet sixe --*/
+@media(max-width:1030px) {
+    #details, #order-overview {
+        width: 98%;
+    }
+    #payment-form {
+        width: 100%;
+    }
+}
+/*--- tablet size ---*/
+@media(max-width:800px) {
+    
+}
+
+/*--- mobile ---*/
+@media(max-width:420px) {
+    #payment-form {
+        width: 100%;
+    }
+    .overview {
+        display: none;
+    }
+
+    .overview-img {
+        margin-left: 5px;
+    }
+    .order-review {
+        width: 92%;
+        margin-left: 4%;
+    }
+    
+}
+
+/*-- mobile ---*/
+@media(max-width:340px) {
+    .order-number {
+        word-wrap: break-word;
+    }
+    
 }

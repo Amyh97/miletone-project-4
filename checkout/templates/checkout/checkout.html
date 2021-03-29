@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="row mx-1">
-    <div class="col-12 col-md-7 order-md-last">
+    <div class="col-12 col-lg-7 order-xl-last" id="order-overview">
         <!-- order summary -->
         <p>Order Summary ({{count }})</p>
         <div class="table-responsive overview bottom-margin">
@@ -56,8 +56,24 @@
                     </table>
                     
         </div>
+        <div class="mob-overview d-md-none order-review">
+            {% for item in basket_items %}
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <img src="{{item.image}}" alt="{{item.name}}" class="overview-img">
+                    </div>
+                    <div class="col-6">
+                        <p><strong>Name:</strong> {{item.name}}</p>
+                        <p><strong>Image size/ Session length:</strong> {{item.size_len}}</p>
+                        <p><strong>Finish/ Images returned</strong> {{item.finish_img}}</p>
+                        <p><strong>Quantity:</strong> <em>{{item.quantity }}</em> at £<em>{{item.price}}</em> each</p>
+                    </div>
+                </div>
+            {% endfor%}
+        </div>
     </div>    
-        <div class="col-12 col-md-5 bottom-margin">
+        <div class="col-12 col-lg-5 bottom-margin" id="details">
             <p>Please fill out the form below to complete your order.</p>
             <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                 {% csrf_token %}

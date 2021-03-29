@@ -155,5 +155,9 @@ footer a {
 
 /*-- mobile ---*/
 @media(max-width:340px) {
+    .message-container {
+        width: 75%;
+        right: 60px;
+    }
     
 }
