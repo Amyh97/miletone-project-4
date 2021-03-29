@@ -161,12 +161,14 @@ def checkout_success(request, order_number):
         if save_info:
             profile_data = {
                 # keys match user profile model
+                'default_name': order.full_name,
                 'default_email': order.email,
                 'default_contact_number': order.phone_number,
                 'default_street_address1': order.street_address1,
                 'default_street_address2': order.street_address2,
                 'default_town': order.town_or_city,
                 'default_postcode': order.postcode,
+                # spelling consistant with model
                 'default_counrty': order.country,
             }
             user_profile_form = ProfileForm(profile_data,

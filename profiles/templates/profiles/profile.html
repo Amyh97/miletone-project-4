@@ -32,7 +32,6 @@
                     <thead>
                         <th>Order Number</th>
                         <th>Date</th>
-                        <th>Items</th>
                         <th>Grand Total</th>
                     </thead>
                     <tbody>
@@ -40,15 +39,6 @@
                             <tr>
                                 <td><a href="{% url 'order_history' order.order_number%}" title="{{order.order_number}}">{{order.order_number | truncatechars:5}}</a></td>
                                 <td>{{order.date}}</td>
-                                <td>
-                                    <ul class="list-unstyled">
-                                        {% for item in orders.OrderItem.all %}
-                                        <li class="small">
-                                            {{item.name}}, {{item.size_len}}, {{item.finish_img}} ({{item.quantity}}).
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
-                                </td>
                                 <td>£{{order.grand_total}}</td>
                             </tr>
                         {% endfor %}
