@@ -118,10 +118,8 @@ class StripeWH_Handler:
                     content=f'Webhook received: {event["type"]}|\
                         Order is in database', status=200)
         else:
-            print('order does not exist')
             order = None
             try:
-                print('trying')
                 order = Order.objects.create(
                     full_name=shipping_address.name,
                     user_profile=profile,
@@ -158,15 +156,11 @@ class StripeWH_Handler:
                         quantity=quantity,
                         orderitem_total=orderitem_total,
                     )
-                    print('item added')
                     order_item.save()
 
                     x += 1
             except Exception as e:
-                print('still not fixed it')
-                print(e)
                 if order:
-                    print('problems just keep coming')
                     # delete order if anything goes wrong
                     order.delete()
                 return HttpResponse(
@@ -175,7 +169,6 @@ class StripeWH_Handler:
                     status=500)
         # order has been created in webhook, so can now send email
         self.__send_email_confirmation__(order)
-        print('sent here')
         return HttpResponse(
                     content=f'Webhook received: {event["type"]}|\
                         Order created in webhook', status=200)

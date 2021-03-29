@@ -39,10 +39,7 @@
 /*--- media queries ---*/
 /*-- large tablet ---*/
 @media(max-width: 1050px) {
-    .test {
-        width: 100%;
-        margin-top: 3rem !important;
-    }
+    
 }
 /*--- tablet size ---*/
 @media(max-width:800px) {
