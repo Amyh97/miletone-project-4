@@ -4,14 +4,45 @@
 
 table {
     margin-bottom: 7rem;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 input[type=number] {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .update, .remove {
     text-decoration: none;
     cursor: pointer;
+}
+
+/*--- media queries ---*/
+/*-- large tablet sixe --*/
+@media(min-width:900px) {
+    
+}
+/*--- tablet size ---*/
+@media(max-width:800px) {
+    
+}
+
+/*--- mobile ---*/
+@media(max-width:420px) {
+    #order-review {
+        display: none;
+    }
+
+    #mob-order-review {
+        display: block;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-bottom: 4rem;
+}
+    }
+}
+
+/*-- mobile ---*/
+@media(max-width:340px) {
+    
 }

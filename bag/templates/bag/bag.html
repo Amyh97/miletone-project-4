@@ -11,10 +11,12 @@
         <h2 class="text-center">Basket:</h2>
         <hr class="w-50 mx-auto">
     </div>
-    <div class="col-10 offset-1 mt-4">
+</div>
+<div class="row">
+    <div class="col-lg-10 offset-lg-1 mt-4">
         <!-- if basket items will only render the table if there are items in the bag-->
         {% if basket_items %}
-        <div class="table-responsive bottom-margin">
+        <div class="table-responsive bottom-margin" id="order-review">
             <table class="table overlay">
                 <thead>
                     <th scope="col">Item</th>
@@ -36,13 +38,7 @@
                         <td>{{ item.finish_img }}</td>
                         <td>£{{ item.price }}</td>
                         <td>
-                            <form action="{% url 'adjust_basket' item.item_id %}" method="POST" class="qty-form">
-                                {% csrf_token %}
-                                <input class="form-control" type="number" name="quantity" value="{{ item.quantity }}"
-                                    min="1" max="100">
-                            </form>
-                            <a class="update">Update</a>
-                            <a class="remove text-danger" id="remove_{{ item.item_id }}">Remove</a>
+                            {% include "bag/quantity-form.html" %}
                         </td>
                         <td>£{{ item.orderitem_total }}</td>
                     </tr>
@@ -74,6 +70,52 @@
                 </tbody>
             </table>
 
+        </div>
+        <div class="d-md-none" id="mob-order-review">
+            {% for item in basket_items %}
+            <hr>
+            <div class="row">
+                <div class="col-6">
+                    <img src="{{item.image}}" alt="{{item.name}}" class="overview-img">
+                </div>
+                <div class="col-6">
+                    <p><strong>Name:</strong> {{item.name}}</p>
+                </div>
+                <p><strong>Image size/ Session length:</strong> {{item.size_len}}</p>
+                <p><strong>Finish/ Images returned</strong> {{item.finish_img}}</p>
+                <p><strong>Price:</strong> {{ item.price }}</p>
+                <div class="row">
+                    <div class="col-6">
+                        <p><strong>Quantity:</strong></p>
+                    </div>
+                    <div class="col-6">
+                        {% include "bag/quantity-form.html" %}
+                    </div>
+                </div>
+            </div>
+            {% endfor%}
+            <p><strong>Basket Total: £{{ total|floatformat:2 }}</strong></p>
+                <p> Free delivery on orders over £{{free_delivery_threshold}}</p>
+                <p><strong>Delivery: £{{ delivery|floatformat:2 }}</strong></p>
+                <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
+                {% if free_delivery_delta > 0 %}
+                <p class="mb-1 text-danger">
+                    You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong>
+                    more!
+                </p>
+                {% endif %}
+                <div class="row">
+                    <div class="col-6">
+                        <a href="{% url 'products' %}" class="btn my-btn text-light mt-1 mx-auto">
+                            <i class="fas fa-arrow-left"></i> Keep Shopping
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <a href="{% url 'checkout' %}" class="btn my-btn text-light mt-1 mx-auto">
+                            <i class="fas fa-shopping-basket"></i> Checkout
+                        </a>
+                    </div>
+                </div>
         </div>
         {% else %}
         <h3 class="mx-4">Your basket is currently empty.</h3>

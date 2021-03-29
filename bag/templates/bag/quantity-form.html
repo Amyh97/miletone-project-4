@@ -1,0 +1,6 @@
+<form action="{% url 'adjust_basket' item.item_id %}" method="POST" class="qty-form">
+    {% csrf_token %}
+    <input class="form-control" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="100">
+</form>
+<a class="update">Update</a>
+<a class="remove text-danger" id="remove_{{ item.item_id }}">Remove</a>
