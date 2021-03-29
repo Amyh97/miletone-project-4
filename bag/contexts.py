@@ -49,7 +49,6 @@ def basket_content(request):
         'free_delivery_threshold': settings.FREE_DELIVERY,
         'grand_total': grand_total,
     }
-
     return context
 
 

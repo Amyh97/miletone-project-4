@@ -86,7 +86,7 @@ TEMPLATES = [
                 # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # custon context processor for the basket
+                # custom context processor for the basket
                 'bag.contexts.basket_content',
             ],
             'builtins': [

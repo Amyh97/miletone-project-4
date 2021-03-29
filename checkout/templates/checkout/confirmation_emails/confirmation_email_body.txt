@@ -8,7 +8,7 @@ Your order details are below:
  Date of order: {{ order.date }}
 
  Order Total: £{{ order.total }}
- Delivery Cost: £{{ order.delivery}}
+ Delivery Cost: £{{ order.delivery }}
  Grand Total: £{{ order.grand_total }}
 
 Products/photos will be sent to {{ order.street_address1}}, {{ order.town_or_city }} in {{ order.country }}.

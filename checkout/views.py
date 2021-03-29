@@ -23,11 +23,10 @@ def cache_checkout_data(request):
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
-            'basket': basket_content,
+            'basket': json.dumps(request.session.get('basket', {})),
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
-        print(basket_content)
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(request, 'Sorry, your payment cannot be \
