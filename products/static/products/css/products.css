@@ -82,6 +82,12 @@
         margin-left: 25% !important;
     }
 }
+
+@media(max-width:1030px) {
+    .instructions {
+        color: #fff;
+    }
+}
 /*--- tablet size ---*/
 @media(max-width:800px) {
     

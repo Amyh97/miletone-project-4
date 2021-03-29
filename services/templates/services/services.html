@@ -1,35 +1,35 @@
 {% extends "base.html" %}
 {% load static %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+<link rel="stylesheet" href="{% static 'services/css/services.css' %}">
 {% endblock %}
 
 {% block content %}
 <div class="row">
     <div class="col-md-10">
-        <h2 class="mt-2 text-center">Services</h2>
+        <h2 class="mt-4 text-center">Services</h2>
         <hr class="w-75 mx-auto">
     </div>
 </div>
 <div class="row">
     <div class="col">
         <!-- col 10 and offset 1 gives 1 col margin each side of contents-->
-        <div class="items col-10 offset-1">
+        <div class="items col-md-10 offset-md-1">
             <div class="row">
-                <div class="col photos">
-                    
-                    {% for service in services %}
-                        <!-- bootsrtap card element, swapped paragraph for header and added a tag to image -->
-                        <div class="card" style="width: 18rem;">
-                            <a href="{% url 'service_detail' service.id %}">
-                                <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.service }}">
-                            </a>
-                            <div class="card-body">
-                                <h5 class="card-title">{{ service.service | title }}</h5>
-                            </div>
+
+                {% for service in services %}
+                <div class="col-lg-3 service">
+                    <!-- bootsrtap card element, swapped paragraph for header and added a tag to image -->
+                    <div class="card" style="width: 18rem;">
+                        <a href="{% url 'service_detail' service.id %}">
+                            <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.service }}">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ service.service | title }}</h5>
                         </div>
-                    {% endfor %}
+                    </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>

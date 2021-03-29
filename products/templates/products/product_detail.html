@@ -29,7 +29,7 @@
     <div class="col-sm-12 col-lg-3 mt-5 specs">
         <form action="{% url 'basket_item' product.id %}" method="POST" name="AddToBasket">
             {% csrf_token %}
-            <p>The price is calculated by the size and finish of the image, select your prefered size and finish to
+            <p class="instructions">The price is calculated by the size and finish of the image, select your prefered size and finish to
                 calculate the price then add to basket.</p>
             <div class="row">
                 <div class="col-6">

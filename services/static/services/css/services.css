@@ -1,0 +1,57 @@
+.card-img-top {
+    height: 430px;
+    width: auto;
+    object-fit: cover;
+}
+
+.card {
+    overflow: hidden;
+}
+
+/*--- media queries ---*/
+/*-- large tablet sixe --*/
+@media(max-width:1030px) {
+    .service {
+        /*-- use important to override bootstrap col ---*/
+        width: 50% !important;
+        margin-bottom: 3rem;
+    }
+    .instructions {
+        color: rgb(255, 255, 255);
+    }
+    
+}
+@media(min-height:1020px) {
+    /*--- use important to override bootstrap ---*/
+    .image, .info {
+        width: 40% !important;
+        margin-left: 0.5rem !important;
+    }
+    .specs {
+        width: 40% !important;
+        margin-left: 25% !important;
+    }
+
+}
+/*--- tablet size ---*/
+@media(max-width:800px) {
+    
+}
+
+/*--- mobile ---*/
+@media(max-width:430px) {
+    .service {
+        width: 99% !important;
+        padding-left: 15%;
+    }
+}
+
+/*-- mobile ---*/
+@media(max-width:340px) {
+    .service {
+        width: 100% !important;
+        padding: 0;
+        margin-left: 2rem;
+    }
+        
+}

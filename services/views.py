@@ -79,13 +79,13 @@ def edit_service(request, service_id):
                 updated {service.name}!')
             return redirect(reverse('services_detail', args=[service.id]))
         else:
-            messages.error(request, f'Could not update {service.name}.\
+            messages.error(request, f'Could not update {service.service}.\
                 Please double check the form and try again.')
     else:
         form = ServiceForm(instance=service)
         messages.info(request, f'You are editing {service.service}')
 
-    template = 'products/edit_item.html'
+    template = 'services/edit_service.html'
 
     context = {
         'form': form,
