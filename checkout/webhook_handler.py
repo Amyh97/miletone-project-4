@@ -84,7 +84,6 @@ class StripeWH_Handler:
                     address.line2
                 profile.save()
 
-        order_exists = False
         attempt = 1
         while attempt <= 5:
             try:
@@ -102,7 +101,6 @@ class StripeWH_Handler:
                         original_basket=basket,
                         stripe_pid=pid,
                 )
-                order_exists = True
                 # break while loop as order has been found
                 break
 
@@ -111,7 +109,7 @@ class StripeWH_Handler:
                 attempt += 1
                 time.sleep(1)
 
-        if order_exists:
+        if Order:
             # order is in system so can send email
             self.__send_email_confirmation__(order)
             return HttpResponse(
