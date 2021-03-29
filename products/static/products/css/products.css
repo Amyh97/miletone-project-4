@@ -1,6 +1,7 @@
 /*--- products page ---*/
 .card {
     max-height: 250px;
+    margin-bottom: 5px;
 }
 .card-body {
     z-index: 10;
@@ -70,6 +71,13 @@
 }
 
 /*--- media queries ---*/
+/*--- pc only ---*/
+@media(min-width:1040px) {
+    #photo-row {
+        margin-right: 5%;
+        margin-left: 5%;
+    }
+}
 /*-- large tablet ---*/
 @media(min-height:1020px) {
     /*--- use important to override bootstrap ---*/
