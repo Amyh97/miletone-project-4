@@ -32,6 +32,7 @@ card.mount("#card-element");
 
 card.addEventListener('change', function (event) {
     var errorDiv = document.getElementById('card-errors');
+    $(errorDiv).empty()
     if (event.error) {
         var html =
             `<span role="alert">
