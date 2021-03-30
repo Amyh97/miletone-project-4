@@ -137,11 +137,13 @@ class StripeWH_Handler:
                     specs = list(basket.items())[x][1]
                     item_id = list(basket.items())[x]
                     name = specs.split(",")[0].split(":")[1].replace("'", "")
+                    # unable to shoren lines, get unexpected indent error
                     image = specs.split(",")[1].split(":", 1)[1].replace("'", "")
                     size_len = specs.split(",")[2].split(":")[1].replace("'", "")
                     finish_img = specs.split(',')[3].split(":")[1].replace("'", "")
                     price = Decimal(specs.split(',')[4].split(":")[1].replace("'", ""))
-                    quantity = int(specs.split(',')[5].split(":")[1].replace("']", "").replace("'", "").strip())
+                    quantity = int(specs.split(',')[5].split(":")[1]
+                                   .replace("']", "").replace("'", "").strip())
                     orderitem_total = price * quantity
                     order_item = OrderItem(
                         item_id=item_id,

@@ -28,6 +28,7 @@ def products_page(request):
                 messages.error(request, "You didn't search anything!")
                 return redirect(reverse('products'))
 
+            # unable to shorten line to avoid whitespace error
             query = Q(name__icontains=search) | Q(description__icontains=search)
             product = product.filter(query)
 

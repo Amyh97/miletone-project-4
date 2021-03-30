@@ -8,7 +8,7 @@ import stripe
 import json
 
 from .forms import OrderForm
-from bag.contexts import stripe_basket, basket_content
+from bag.contexts import stripe_basket
 from .models import OrderItem, Order
 from profiles.models import UserProfile
 from profiles.forms import ProfileForm
@@ -72,8 +72,10 @@ def checkout(request):
                 image = specs.split(",")[1].split(":", 1)[1].replace("'", "")
                 size_len = specs.split(",")[2].split(":")[1].replace("'", "")
                 finish_img = specs.split(',')[3].split(":")[1].replace("'", "")
-                price = Decimal(specs.split(',')[4].split(":")[1].replace("'", ""))
-                quantity = int(specs.split(',')[5].split(":")[1].replace("']", "").replace("'", "").strip())
+                price = Decimal(specs.split(',')[4].split(":")[1]
+                                .replace("'", ""))
+                quantity = int(specs.split(',')[5].split(":")[1]
+                               .replace("']", "").replace("'", "").strip())
                 orderitem_total = price * quantity
                 order_item = OrderItem(
                     item_id=item_id,

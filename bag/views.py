@@ -43,7 +43,8 @@ def basket_item(request, item_id):
         keys = ('name', 'image', 'size_len', 'finish_img', 'price', 'quantity')
         values = (name, image, size_len, finish_img, price, quantity)
 
-        specs = '[{}]'.format(', '.join("'{}': '{}'".format(k, v) for k, v in zip(keys, values)))
+        specs = '[{}]'.format(', '.join("'{}': '{}'".format(k, v)
+                              for k, v in zip(keys, values)))
         # list as dict is not hashable
         if item_id not in list(basket):
             basket[item_id] = specs
@@ -51,7 +52,8 @@ def basket_item(request, item_id):
                         {finish_img} to your basket.')
         else:
             # what is alreay in the basket
-            current_qty = int(basket[item_id].split(',')[5].split(':')[1].replace("']", "").replace("'", "").strip())
+            current_qty = int(basket[item_id].split(',')[5].split(':')[1]
+                              .replace("']", "").replace("'", "").strip())
             # ensure the number is increased, not overwritten
             new_qty = str(current_qty + quantity)
             # push new quantity into specs
@@ -73,11 +75,13 @@ def adjust_basket(request, item_id):
     image = basket[item_id].split(',')[1].split(":", 1)[1].replace("'", "")
     size_len = basket[item_id].split(',')[2].split(":")[1].replace("'", "")
     finish_img = basket[item_id].split(',')[3].split(":")[1].replace("'", "")
-    price = Decimal(basket[item_id].split(',')[4].split(":")[1].replace("'", ""))
+    price = Decimal(basket[item_id].split(',')[4].split(":")[1]
+                    .replace("'", ""))
     keys = ('name', 'image', 'size_len', 'finish_img', 'price', 'quantity')
     values = (name, image, size_len, finish_img, price, quantity)
 
-    specs = '[{}]'.format(', '.join("'{}': '{}'".format(k, v) for k, v in zip(keys, values)))
+    specs = '[{}]'.format(', '.join("'{}': '{}'".format(k, v)
+                          for k, v in zip(keys, values)))
 
     if quantity > 0:
         if item_id in list(basket):

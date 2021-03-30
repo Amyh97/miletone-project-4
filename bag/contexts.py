@@ -15,7 +15,8 @@ def basket_content(request):
         size_len = item[1].split(',')[2].split(":")[1].replace("'", "")
         finish_img = item[1].split(',')[3].split(":")[1].replace("'", "")
         price = Decimal(item[1].split(',')[4].split(":")[1].replace("'", ""))
-        quantity = int(item[1].split(',')[5].split(":")[1].replace("']", "").replace("'", "").strip())
+        quantity = int(item[1].split(',')[5].split(":")[1].replace("']", "")
+                       .replace("'", "").strip())
         orderitem_total = price * quantity
         total += orderitem_total
         count += quantity
@@ -61,7 +62,8 @@ def stripe_basket(request):
     for item in basket.items():
         item_id = item[0]
         price = Decimal(item[1].split(',')[4].split(":")[1].replace("'", ""))
-        quantity = int(item[1].split(',')[5].split(":")[1].replace("']", "").replace("'", "").strip())
+        quantity = int(item[1].split(',')[5].split(":")[1].replace("']", "")
+                       .replace("'", "").strip())
         orderitem_total = price * quantity
         total += orderitem_total
         count += quantity
