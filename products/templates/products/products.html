@@ -1,26 +1,20 @@
-{% extends "base.html" %}
-{% load static %}
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
-{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}" />
+{% endblock %} {% block content %}
 <div class="row">
     <div class="col-md-10">
         <h2 class="mt-4 text-center">Products</h2>
-        <hr class="w-75 mx-auto">
+        <hr class="w-75 mx-auto" />
     </div>
     <div class="col-md-2">
         <div class="btn-group">
-            <button class="btn my-btn text-light mt-4 dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
+            <button class="btn my-btn text-light mt-4 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Filter
             </button>
             <ul class="dropdown-menu">
                 <form method="GET" action="{% url 'products' %}" class="mt-2">
                     <div class="input-group w-100">
-                        <input class="form-control border border-black rounded-0" type="text" name="search"
-                            placeholder="Search...">
+                        <input class="form-control border border-black rounded-0" type="text" name="search" placeholder="Search..." />
                         <div class="input-group-append">
                             <button class="form-control btn my-btn text-light" type="submit">
                                 <i class="fas fa-search"></i>
@@ -33,8 +27,7 @@
                 </li>
                 {% for category in categories %}
                 <li class="mb-1">
-                    <a href="{% url 'products' %}?Category={{ category.name }}"
-                        class="fliter-link">{{ category.friendly_name }}</a>
+                    <a href="{% url 'products' %}?Category={{ category.name }}" class="fliter-link">{{ category.friendly_name }}</a>
                 </li>
                 {% endfor %}
             </ul>
@@ -51,7 +44,7 @@
                     <!-- bootsrtap card element, swapped paragraph for header and added a tag to image -->
                     <div class="card" style="width: 18rem;">
                         <a href="{% url 'product_detail' product.id %}">
-                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" />
                         </a>
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name | title }}</h5>
@@ -68,22 +61,20 @@
                             <li><a href="?page={{ products.previous_page_number }}">&laquo;</a></li>
                             {% else %}
                             <li class="disabled"><span>&laquo;</span></li>
-                            {% endif %}
-                            {% for i in products.paginator.page_range %}
-                            {% if products.number == i %}
-                            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% endif %} {% for i in products.paginator.page_range %} {% if products.number == i %}
+                            <li class="active">
+                                <span>{{ i }} <span class="sr-only">(current)</span></span>
+                            </li>
                             {% else %}
                             <li><a href="?page={{ i }}">{{ i }}</a></li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if products.has_next %}
+                            {% endif %} {% endfor %} {% if products.has_next %}
                             <li><a href="?page={{ products.next_page_number }}">&raquo;</a></li>
                             {% else %}
                             <li class="disabled"><span>&raquo;</span></li>
                             {% endif %}
                         </ul>
                         {% else %}
-                        <div class="col-12 pagination-placeholder ">
+                        <div class="col-12 pagination-placeholder">
                             <!-- keeps gap at bottom of page if there are no other pages -->
                         </div>
                         {% endif %}

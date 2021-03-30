@@ -1,33 +1,28 @@
-{% extends "base.html" %}
-{% load static %}
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
-{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}" />
+{% endblock %} {% block content %}
 <div class="row h-100">
     <div class="col-sm-12 col-lg-3 offset-lg-1 mt-5 image">
-        <img src="{{ service.image.url }}" alt="{{ service.service }}" class="my-auto product-image">
+        <img src="{{ service.image.url }}" alt="{{ service.service }}" class="my-auto product-image" />
     </div>
     <div class="col-sm-12 col-lg-3 mt-5 info">
         <h2 class="text-capitalize">{{ service.service }}</h2>
         <p>Description: {{ service.description }}</p>
         {% if request.user.is_superuser %}
-                <div class="row mb-5">
-                    <div class="col-6">
-                        <a href="{% url 'edit_service' service.id %}" class="text-primary mt-1 mx-auto">Edit Service</a>
-                    </div>
-                    <div class="col-6">
-                        <a href="{% url 'delete_service' service.id %}" class="text-danger mt-1 mx-auto">Delete Service</a>
-                    </div>
-                </div>
-            {% endif %}
+        <div class="row mb-5">
+            <div class="col-6">
+                <a href="{% url 'edit_service' service.id %}" class="text-primary mt-1 mx-auto">Edit Service</a>
+            </div>
+            <div class="col-6">
+                <a href="{% url 'delete_service' service.id %}" class="text-danger mt-1 mx-auto">Delete Service</a>
+            </div>
+        </div>
+        {% endif %}
     </div>
     <div class="col-sm-12 col-lg-3 mt-5 specs">
         <form action="{% url 'basket_item' service.id %}" method="POST" name="AddToBasket">
             {% csrf_token %}
-            <p class="instructions">The price is calculated by the length and how you want the images returned, select your prefered length and how you would like to recieve the images to
-                calculate the price then add to basket.</p>
+            <p class="instructions">The price is calculated by the length and how you want the images returned, select your prefered length and how you would like to recieve the images to calculate the price then add to basket.</p>
             <div class="row">
                 <div class="col-6">
                     <p><strong>Length:</strong></p>
@@ -53,26 +48,25 @@
             <div class="col-sm-12 col-lg-3 mt-5">
                 <div class="form-group row buttons">
                     <div class="input-group">
-                    <input class="form-control" type="number" name="quantity" value="1" min="1" max="100" >
+                        <input class="form-control" type="number" name="quantity" value="1" min="1" max="100" />
                     </div>
-                    <input type="hidden" name="item_type" value="service">
-                    <input type="hidden" name="id" value="{{ service.id }}">
-                    <input type="hidden" name="name" value="{{service.service}}">
-                    <input type="hidden" name="image" value="{{service.image.url}}">
-                    <input type="hidden" name="size_len" value="" class="SetSizeLen">
-                    <input type="hidden" name="finish_img" value="" class="SetFinishImg">
-                    <input type="hidden" name="price" value="" class="GetPrice">
-                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                    </div>
+                    <input type="hidden" name="item_type" value="service" />
+                    <input type="hidden" name="id" value="{{ service.id }}" />
+                    <input type="hidden" name="name" value="{{service.service}}" />
+                    <input type="hidden" name="image" value="{{service.image.url}}" />
+                    <input type="hidden" name="size_len" value="" class="SetSizeLen" />
+                    <input type="hidden" name="finish_img" value="" class="SetFinishImg" />
+                    <input type="hidden" name="price" value="" class="GetPrice" />
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}" />
+                </div>
             </div>
             <div class="row">
-                        <div class="col-sm-6">
-                            <input class="btn my-btn text-light mt-1 AddToBasket" type="submit" value="Add to basket" disabled>
-                        </div>
-                        <div class="col-sm-6">
-                            <a href="{% url 'services' %}" class="btn my-btn text-light mt-1 mx-auto"><i
-                                    class="fas fa-arrow-left"></i> Keep Shopping</a>
-                        </div>
+                <div class="col-sm-6">
+                    <input class="btn my-btn text-light mt-1 AddToBasket" type="submit" value="Add to basket" disabled />
+                </div>
+                <div class="col-sm-6">
+                    <a href="{% url 'services' %}" class="btn my-btn text-light mt-1 mx-auto"><i class="fas fa-arrow-left"></i> Keep Shopping</a>
+                </div>
             </div>
         </form>
     </div>

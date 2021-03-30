@@ -3,7 +3,6 @@
     padding-bottom: 1rem;
     padding-top: 1.25rem;
     font: 50px;
-    
 }
 
 #profile-form {
@@ -20,7 +19,7 @@
 }
 
 .order-history {
-    max-height:380px;
+    max-height: 380px;
     overflow-y: auto;
     margin-right: 3rem;
     background-color: rgba(255, 255, 255, 0.8);
@@ -33,14 +32,15 @@
 
 /*--- media queries ---*/
 /*-- large tablet sixe --*/
-@media(min-height:1020px) {
-    .order-history-div, .detail-div {
+@media (min-height: 1020px) {
+    .order-history-div,
+    .detail-div {
         width: 90% !important;
         margin-left: 5% !important;
     }
 }
 /*--- tablet size ---*/
-@media(max-width:800px) {
+@media (max-width: 800px) {
     .order-history {
         margin-left: 5%;
         width: 90%;
@@ -53,11 +53,9 @@
 }
 
 /*--- mobile ---*/
-@media(max-width:400px) {
-    
+@media (max-width: 400px) {
 }
 
 /*-- mobile ---*/
-@media(max-width:340px) {
-    
+@media (max-width: 340px) {
 }

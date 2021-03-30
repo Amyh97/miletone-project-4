@@ -1,15 +1,11 @@
-{% extends "base.html" %}
-{% load static %}
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'bag/css/bag.css' %}">
-{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% load static %} {% block extra_css %}
+<link rel="stylesheet" href="{% static 'bag/css/bag.css' %}" />
+{% endblock %} {% block content %}
 <div class="row w-100">
     <div class="col-12 mt-2">
-        <hr class="w-50 mx-auto">
+        <hr class="w-50 mx-auto" />
         <h2 class="text-center">Basket:</h2>
-        <hr class="w-50 mx-auto">
+        <hr class="w-50 mx-auto" />
     </div>
 </div>
 <div class="row">
@@ -33,7 +29,7 @@
                     {% for item in basket_items %}
                     <tr>
                         <td><strong>{{ item.name|title }}</strong></td>
-                        <td><img src="{{ item.image }}" alt="{{ item.name }}" class="overview-img"></td>
+                        <td><img src="{{ item.image }}" alt="{{ item.name }}" class="overview-img" /></td>
                         <td>{{ item.size_len }}</td>
                         <td>{{ item.finish_img }}</td>
                         <td>£{{ item.price }}</td>
@@ -46,7 +42,7 @@
                     <tr>
                         <td colspan="7" class="text-end">
                             <p><strong>Basket Total: £{{ total|floatformat:2 }}</strong></p>
-                            <p> Free delivery on orders over £{{free_delivery_threshold}}</p>
+                            <p>Free delivery on orders over £{{free_delivery_threshold}}</p>
                             <p><strong>Delivery: £{{ delivery|floatformat:2 }}</strong></p>
                             <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
                             {% if free_delivery_delta > 0 %}
@@ -59,24 +55,19 @@
                     </tr>
                     <tr>
                         <td colspan="7" class="text-end">
-                            <a href="{% url 'products' %}" class="btn my-btn text-light mt-1 mx-auto">
-                                <i class="fas fa-arrow-left"></i> Keep Shopping
-                            </a>
-                            <a href="{% url 'checkout' %}" class="btn my-btn text-light mt-1 mx-auto">
-                                <i class="fas fa-shopping-basket"></i> Checkout
-                            </a>
+                            <a href="{% url 'products' %}" class="btn my-btn text-light mt-1 mx-auto"> <i class="fas fa-arrow-left"></i> Keep Shopping </a>
+                            <a href="{% url 'checkout' %}" class="btn my-btn text-light mt-1 mx-auto"> <i class="fas fa-shopping-basket"></i> Checkout </a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
         </div>
         <div class="d-md-none" id="mob-order-review">
             {% for item in basket_items %}
-            <hr>
+            <hr />
             <div class="row">
                 <div class="col-6">
-                    <img src="{{item.image}}" alt="{{item.name}}" class="overview-img">
+                    <img src="{{item.image}}" alt="{{item.name}}" class="overview-img" />
                 </div>
                 <div class="col-6">
                     <p><strong>Name:</strong> {{item.name}}</p>
@@ -95,58 +86,52 @@
             </div>
             {% endfor%}
             <p><strong>Basket Total: £{{ total|floatformat:2 }}</strong></p>
-                <p> Free delivery on orders over £{{free_delivery_threshold}}</p>
-                <p><strong>Delivery: £{{ delivery|floatformat:2 }}</strong></p>
-                <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
-                {% if free_delivery_delta > 0 %}
-                <p class="mb-1 text-danger">
-                    You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong>
-                    more!
-                </p>
-                {% endif %}
-                <div class="row">
-                    <div class="col-6">
-                        <a href="{% url 'products' %}" class="btn my-btn text-light mt-1 mx-auto">
-                            <i class="fas fa-arrow-left"></i> Keep Shopping
-                        </a>
-                    </div>
-                    <div class="col-6">
-                        <a href="{% url 'checkout' %}" class="btn my-btn text-light mt-1 mx-auto">
-                            <i class="fas fa-shopping-basket"></i> Checkout
-                        </a>
-                    </div>
+            <p>Free delivery on orders over £{{free_delivery_threshold}}</p>
+            <p><strong>Delivery: £{{ delivery|floatformat:2 }}</strong></p>
+            <h4 class="mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
+            {% if free_delivery_delta > 0 %}
+            <p class="mb-1 text-danger">
+                You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong>
+                more!
+            </p>
+            {% endif %}
+            <div class="row">
+                <div class="col-6">
+                    <a href="{% url 'products' %}" class="btn my-btn text-light mt-1 mx-auto"> <i class="fas fa-arrow-left"></i> Keep Shopping </a>
                 </div>
+                <div class="col-6">
+                    <a href="{% url 'checkout' %}" class="btn my-btn text-light mt-1 mx-auto"> <i class="fas fa-shopping-basket"></i> Checkout </a>
+                </div>
+            </div>
         </div>
         {% else %}
         <h3 class="mx-4">Your basket is currently empty.</h3>
-        <a href="{% url 'products' %}" class="btn my-btn text-light mx-4"><i class="fas fa-arrow-left"></i>
+        <a href="{% url 'products' %}" class="btn my-btn text-light mx-4">
+            <i class="fas fa-arrow-left"></i>
             Keep Shopping
         </a>
         {% endif %}
     </div>
 </div>
-{% endblock %}
-
-{% block postloadjs %}
-{{ block.super }}
+{% endblock %} {% block postloadjs %} {{ block.super }}
 <script>
     // update number in basket
-    $('.update').click(function () {
-        let form = $(this).prev('.qty-form');
+    $(".update").click(function () {
+        let form = $(this).prev(".qty-form");
         form.submit();
     });
 
     // remove item from basket
-    $('.remove').click(function () {
+    $(".remove").click(function () {
         let csrfToken = "{{ csrf_token }}";
-        let itemId = $(this).attr('id').split('remove_')[1];
+        let itemId = $(this).attr("id").split("remove_")[1];
         let url = `/bag/remove/${itemId}`;
         // middleware requited by Django
-        let data = { 'csrfmiddlewaretoken': csrfToken };
+        let data = { csrfmiddlewaretoken: csrfToken };
 
         $.post(url, data).done(function () {
             location.reload();
         });
-    });  
+    });
 </script>
 {% endblock %}

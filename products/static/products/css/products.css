@@ -10,7 +10,7 @@
     height: 200px;
     width: 18rem;
     object-fit: cover;
-    object-position: center;   
+    object-position: center;
 }
 
 .fliter-link {
@@ -67,21 +67,22 @@
     text-decoration: none;
     border-radius: 4px;
     padding: 4px;
-    justify-content: center; 
+    justify-content: center;
 }
 
 /*--- media queries ---*/
 /*--- pc only ---*/
-@media(min-width:1040px) {
+@media (min-width: 1040px) {
     #photo-row {
         margin-right: 5%;
         margin-left: 5%;
     }
 }
 /*-- large tablet ---*/
-@media(min-height:1020px) {
+@media (min-height: 1020px) {
     /*--- use important to override bootstrap ---*/
-    .image, .info {
+    .image,
+    .info {
         width: 40% !important;
         margin-left: 0.5rem !important;
     }
@@ -91,28 +92,25 @@
     }
 }
 
-@media(max-width:1030px) {
+@media (max-width: 1030px) {
     .instructions {
         color: #fff;
     }
 }
 /*--- tablet size ---*/
-@media(max-width:800px) {
-    
+@media (max-width: 800px) {
 }
 
 /*--- mobile ---*/
-@media(max-width:420px) {
+@media (max-width: 420px) {
     .btn-group {
         width: 95%;
         left: 2.5%;
     }
 }
 /*-- iphone 6/7/8 ---*/
-@media(max-width:415px) {
-    
+@media (max-width: 415px) {
 }
 /*-- mobile ---*/
-@media(max-width:340px) {
-    
+@media (max-width: 340px) {
 }

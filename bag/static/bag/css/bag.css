@@ -7,27 +7,20 @@ table {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-input[type=number] {
+input[type="number"] {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.update, .remove {
+.update,
+.remove {
     text-decoration: none;
     cursor: pointer;
 }
 
 /*--- media queries ---*/
-/*-- large tablet sixe --*/
-@media(min-width:900px) {
-    
-}
-/*--- tablet size ---*/
-@media(max-width:800px) {
-    
-}
 
 /*--- mobile ---*/
-@media(max-width:420px) {
+@media (max-width: 420px) {
     #order-review {
         display: none;
     }
@@ -38,11 +31,5 @@ input[type=number] {
         padding-left: 5px;
         padding-right: 5px;
         margin-bottom: 4rem;
-}
     }
-}
-
-/*-- mobile ---*/
-@media(max-width:340px) {
-    
 }

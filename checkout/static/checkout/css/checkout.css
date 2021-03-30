@@ -115,10 +115,6 @@ a {
         width: 100%;
     }
 }
-/*--- tablet size ---*/
-@media(max-width:800px) {
-    
-}
 
 /*--- mobile ---*/
 @media(max-width:420px) {
