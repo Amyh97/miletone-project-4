@@ -72,12 +72,17 @@
                 {% csrf_token %}
                 <fieldset>
                     <legend class="fieldset-label">Your Details</legend>
-                    {{ order_form.full_name | as_crispy_field }} {{ order_form.email | as_crispy_field }} {{ order_form.phone_number | as_crispy_field }}
+                    {{ order_form.full_name | as_crispy_field }}
+                    {{ order_form.email | as_crispy_field }}
+                    {{ order_form.phone_number | as_crispy_field }}
                 </fieldset>
                 <fieldset>
                     <legend class="fieldset-label">Delivery Details</legend>
-                    {{ order_form.street_address1 | as_crispy_field }} {{ order_form.street_address2 | as_crispy_field }} {{ order_form.town_or_city | as_crispy_field }} {{ order_form.postcode | as_crispy_field }} {{ order_form.country |
-                    as_crispy_field }}
+                    {{ order_form.street_address1 | as_crispy_field }}
+                    {{ order_form.street_address2 | as_crispy_field }}
+                    {{ order_form.town_or_city | as_crispy_field }}
+                    {{ order_form.postcode | as_crispy_field }}
+                    {{ order_form.country | as_crispy_field }}
                     <!-- if user is logged in save order to profile -->
                     {% if user.is_authenticated %}
                     <label for="save-info">Would you like to update your details?</label>
