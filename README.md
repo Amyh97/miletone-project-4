@@ -26,23 +26,23 @@ User goals:
 ### User stories:
 | Story number | As a …            | I want to …                                      | So that I can…                                                                 | acceptance criteria                                                                                                                                   |
 |--------------|-------------------|--------------------------------------------------|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1            | customer          | be able to browse products and services availble | Decide exactly what service/ product they want                                 | browse the products/ services pages to decide what they want                                                                                          |
-|              |                   |                                                  |                                                                                | they cannot find what they are looking for but are able to message the photographer                                                                   |
-| 2            | customer          | be able to contact the photographer directly     | discuss specific needs or ask questions that are not answered on the main site | user can successfully contact the photographer through the use of a form                                                                              |
+| 1            | Customer          | Be able to browse products and services availble | Decide exactly what service/ product they want                                 | Browse the products/ services pages to decide what they want                                                                                          |
+|              |                   |                                                  |                                                                                | They cannot find what they are looking for but are able to message the photographer                                                                   |
+| 2            | Customer          | Be able to contact the photographer directly     | Discuss specific needs or ask questions that are not answered on the main site | User can successfully contact the photographer through the use of a form                                                                              |
 |              |                   |                                                  |                                                                                | If the user inputs incorrect information, the form will not submit and an error will tell the user needs to be corrected                              |
-| 3            | customer          | review my order                                  | check that I am happy with my order before proceeding to payment               | the user can see a detailed break down of the products/services ordered                                                                               |
-|              |                   |                                                  |                                                                                | users are not happy with the contents of the basket, so have the ability to update the quantity of items or delete them                               |
-| 4            | new customer      | Create an account                                | place orders and see order history                                             | the user fills out a form that creates an account for them                                                                                            |
-|              |                   |                                                  |                                                                                | the user makes an error when inputting data, the form is not submitted and the error is highlighted                                                   |
-| 5            | existing customer | see my orders, past and current                  | track their current order                                                      | the user is able to log into their account and review the status of their order that is updated by the site owner                                     |
-|              |                   |                                                  |                                                                                | the user does not enter the correct credentials and are alerted to this before they are able to log in                                                |
-| 6            | existing customer | review my account                                | Update personal information                                                    | the user is able to submit a form with updated information                                                                                            |
-|              |                   |                                                  |                                                                                | the form does not pass validation so is not submitted and these errors are highlihgted to the user                                                    |
-| 7            | site owner        | review products and services avalible            | add/ remove and update the pricing of products and services                    | the owner is able to manage products via a form                                                                                                       |
-|              |                   |                                                  |                                                                                | the data entered is not valid so no uopdates are made until this is correct                                                                           |
-| 8            | site owner        | able to see current orders                       | update the status for the customer                                             | the site owner is able to update the status of the order for the user via a form                                                                      |
-|              |                   |                                                  |                                                                                | the site owner isn't able to update the order status via the form, but are able to log into Django admin and update the order as they are a superuser |
-| 9            | site owner        | receive emails                                   | respond to customer queries                                                    | the site owner recieves an email directly from the customer with regards to a specific query                                                          |
+| 3            | Customer          | Review my order                                  | Check that I am happy with my order before proceeding to payment               | The user can see a detailed break down of the products/services ordered                                                                               |
+|              |                   |                                                  |                                                                                | Users are not happy with the contents of the basket, so have the ability to update the quantity of items or delete them                               |
+| 4            | New customer      | Create an account                                | Place orders and see order history                                             | The user fills out a form that creates an account for them                                                                                            |
+|              |                   |                                                  |                                                                                | The user makes an error when inputting data, the form is not submitted and the error is highlighted                                                   |
+| 5            | Existing customer | See my orders, past and current                  | Track their current order                                                      | The user is able to log into their account and review the status of their order that is updated by the site owner                                     |
+|              |                   |                                                  |                                                                                | The user does not enter the correct credentials and are alerted to this before they are able to log in                                                |
+| 6            | Existing customer | Review my account                                | Update personal information                                                    | The user is able to submit a form with updated information                                                                                            |
+|              |                   |                                                  |                                                                                | The form does not pass validation so is not submitted and these errors are highlihgted to the user                                                    |
+| 7            | Site owner        | Review products and services avalible            | Add/ remove and update the pricing of products and services                    | The owner is able to manage products via a form                                                                                                       |
+|              |                   |                                                  |                                                                                | The data entered is not valid so no uopdates are made until this is correct                                                                           |
+| 8            | Site owner        | Be able to see current orders                    | Update the status for the customer                                             | The site owner is able to update the status of the order for the user via a form                                                                      |
+|              |                   |                                                  |                                                                                | The site owner isn't able to update the order status via the form, but are able to log into Django admin and update the order as they are a superuser |
+| 9            | Site owner        | Receive emails                                   | Respond to customer queries                                                    | The site owner recieves an email directly from the customer with regards to a specific query                                                          |
 |              |                   |                                                  |                                                                                | The user is unable to send the email as there is an error in the submission form                                                                      |
 ### Wireframes:
 <!-- links to wireframe images --> 
@@ -99,7 +99,79 @@ This project was built using HTML, CSS, JavaScript and Python (using the Django 
 ## Testing
 <!-- add more detail and take bugs/fixes from notes --->
 ## Deployment
-<!-- still need to write up -->
+### Local
+Before you can run this site on an IDE, you will need:
+-	[Python 3]( https://www.python.org/downloads/) as it is used to write the code for this project
+-	[PIP]( https://pypi.org/project/pip/), to install packages in the requirements file.
+-	A method of version control (I used [Github]( https://github.com/).)
+-	An IDE of choice (I used [Gitpod]( https://gitpod.io/).)
+-	[Stripe]( https://stripe.com/en-gb) to handle payments
+With these in place, you can now clone the repository by taking the following steps:
+1.	Under the repository name, click "Clone or download".
+2.	In the Clone with HTTPs section, copy the clone URL for the repository.
+3.	In your local IDE open Git Bash.
+4.	Change the current working directory to the location where you want the cloned directory to be made.
+5.	Type git clone, and then paste the URL you copied in Step 3.
+git clone https://github.com/Amyh97/milestone-project-4
+6.	Press Enter. Your local clone will be created.
+7.	Then install Python (getting the download from the link above) and run the .exe file.
+8.	As Python 3 is required to run this application, PIP (Python Installs Packages) is already installed.
+9.	To install the required packages from the requirements.txt file use the following command in the terminal:
+``` pip3 install -r requitrements.txt ```
+10.	In your IDE environment set the following variables
+
+| Name                  | Value                                                                                                                             |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| DEVELOPMENT           | TRUE                                                                                                                              |
+| MS4_SECRET_KEY        | Can be set to whatever you would like or use [Django Secret Key Generator]( https://miniwebtool.com/django-secret-key-generator/) |
+| MS4_STRIPE_PUBLIC_KEY | This can be found in API keys under Development on Stripe                                                                         |
+| MS4_STRIPE_SECRET_KEY | This can be found in API keys under Development on Stripe                                                                         |
+| MS4_STRIPE_WH_SECRET  | This can be found in Stripe when you add the endpoint                                                                             |
+11.	Use the ```python3 manage.py migrate ``` command in the terminal to create the tables in the database. 
+12.	Use ``` python3 manage.py loaddata <fixture name>``` to add the data to the tables. You will need to load :
+o	categories
+o	products (categories **must** be loaded first as this relies on categories as a foreign key)
+o	sizes
+o	finish
+o	services
+o	lengths
+o	images
+13.	Use ```python3 manage.py createsuperuser``` to add a super user by following the prompts in the terminal.
+14.	Use ``` python3 manage.py runserver ``` to open port 8000, make this public then you can open it in the browser.
+### Remote
+Before you can deploy the site not in a development environment you will require:
+-	A local version of the code (see above).
+-	A [Heroku]( https://dashboard.heroku.com/) account.
+-	An [AWS]( https://aws.amazon.com/) account with an S3 bucket with policies to allow public access.
+-	[Stripe]( https://stripe.com/en-gb) to handle payments.
+-	Gmail with a relevant app registered to send emails from. 
+
+1.	In Heroku, click on “new app” and give it a name, then select the correct region for where you are. 
+2.	Once this is created, go to the resources tab, search for Heroku Postgres and add.
+3.	Back in settings.py, comment out the if statement under DATABASES so you are left with ‘default’ being dj_database_url.parse(‘HERE YOU CAN COPY THE URL FROM HEROKU WHILE SETTING UP’).  Make sure that you do not add your database URL to version control, once you have made the migrations, loaded the data and created a super user, revert this whole section back to how it was. 
+4.	To create the tables on the Postgres database, use the following two commands:
+``` python3 manage.py showmigrations ``` then ``` python3 manage.py migrate```
+
+5.	Next you need to load the data by repeating step 12 from above.
+6.	Repeat step 13 from above to create a superuser so you can access the admin pages on the site (now would be a good time to put the settings.py back).
+7.	Back in Heroku, go to the deployment tab and select Github as the method, here you can search for the repository and enable automatic deployments. 
+8.	The final step to setting up Heroku is to add the following to the config vars under the settings tab:
+ 
+| Name                  | Value                                                                                                                             |
+|-----------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| USE_AWS               | TRUE                                                                                                                              |
+| MS4_SECRET_KEY        | Can be set to whatever you would like or use [Django Secret Key Generator]( https://miniwebtool.com/django-secret-key-generator/) |
+| MS4_STRIPE_PUBLIC_KEY | This can be found in API keys under Development on Stripe                                                                         |
+| MS4_STRIPE_SECRET_KEY | This can be found in API keys under Development on Stripe                                                                         |
+| MS4_STRIPE_WH_SECRET  | This can be found in Stripe when you add the endpoint                                                                             |
+| AWS_ACCESS_KEY_ID     | Valuse from AWS                                                                                                                   |
+| AWS_SECRET_ACCESS_KEY | Value from AWS                                                                                                                    |
+| EMAIL_HOST_PASS       | From your Gmail                                                                                                                   |
+| EMAIL_HOST_USER       | Your Gmail address                                                                                                                |
+9.	From here you can now click the open app to load the site. This will load the static files to your AWS, then you will need to upload the images through the AWS website. 
+
+
+
 ## Credits
 ### Code
 -	The  code (both Python and HTML) for the page pagination on the products page comes from [Simple is Better than Complex]( https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html) and edited to fit the needs of my site. 
