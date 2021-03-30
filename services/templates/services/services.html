@@ -20,7 +20,7 @@
                 {% for service in services %}
                 <div class="col-lg-3 service">
                     <!-- bootsrtap card element, swapped paragraph for header and added a tag to image -->
-                    <div class="card" style="width: 18rem;">
+                    <div class="card mb-4" style="width: 18rem;">
                         <a href="{% url 'service_detail' service.id %}">
                             <img src="{{ service.image.url }}" class="card-img-top" alt="{{ service.service }}">
                         </a>
