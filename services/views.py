@@ -77,7 +77,7 @@ def edit_service(request, service_id):
             form.save()
             messages.success(request, f'You have successfully\
                 updated {service.service}!')
-            return redirect(reverse('services_detail', args=[service.id]))
+            return redirect(reverse('service_detail', args=[service.id]))
         else:
             messages.error(request, f'Could not update {service.service}.\
                 Please double check the form and try again.')
