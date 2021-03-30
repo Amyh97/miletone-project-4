@@ -22,7 +22,7 @@
     <div class="col-sm-12 col-lg-3 mt-5 specs">
         <form action="{% url 'basket_item' service.id %}" method="POST" name="AddToBasket">
             {% csrf_token %}
-            <p class="instructions">The price is calculated by the length and how you want the images returned, select your prefered length and how you would like to recieve the images to calculate the price then add to basket.</p>
+            <p class="instructions">The price is calculated by the length and how you want the images returned, select your preferred length and how you would like to receive the images to calculate the price then add to basket.</p>
             <div class="row">
                 <div class="col-6">
                     <p><strong>Length:</strong></p>
