@@ -4,12 +4,13 @@
 ![screenshot of finished site](media/finished-site.jpg)
 
 This website is for a UK based photographer to sell images that have already been taken and provide services such as photoshoots and lessons. It  provides clear sections for products, services, and a section for users to contact the photographer should they need something that isn’t covered on other parts of the site. 
+
 Business goals:
 -	Make products and services available to users.
 -	Inform users of prices based on the specifications chosen.
 -	Build brand awareness.
 -	Manage services and products available on the website.
--	
+
 User goals:
 -	Browse and filter products that are available and get the price based on the size and finish.
 -	View different types of services and get the price based off the length on the session and images received. 
@@ -19,7 +20,8 @@ User goals:
 ## UX
 ### An ideal user would be:
 -	English speaking
--	Redecorating/moving to want a print Looking for a print either for their own home, or as a gift
+-	Redecorating/moving to want a print 
+-   Looking for a print either for their own home, or as a gift
 -	Family event/ have kids
 -	Getting married 
 -	Wanting to learn how to take photos and use photoshop. 
@@ -51,6 +53,7 @@ When I started the planning process, I drew up wireframes for each page. I start
  ![products](media/products.jpg) ![smaller screens](media/products-sm.jpg)
 The next logical step was to plan out how the product detail page would look including on mobile and tablet. 
 ![product detail](media/product-detail.jpg) ![mobile and tablet](media/porduct-detail-sm.jpg)
+
 The services (including smaller screens) would be like the products screen.
 ![services](media/services.jpg) ![smaller screens](media/services-sm.jpg)
 In addition, the service detail pages (on all viewports) were based on the products wireframes.
