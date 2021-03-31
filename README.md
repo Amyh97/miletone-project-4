@@ -1,7 +1,7 @@
 # Fullstack Milestone Project
 ## [Amy Hollis Photography](https://amy-hollis-photography.herokuapp.com/)
 
-<!-- image of finished site on am i responsive -->
+![screenshot of finished site](media/finished-site.jpg)
 
 This website is for a UK based photographer to sell images that have already been taken as well as provide services such as photoshoots and lessons. It  provides clear sections for products, services and a section for users to contact the photographer should they need something that isn’t covered on other parts of the site. 
 Business goals:
@@ -45,7 +45,26 @@ User goals:
 | 9            | Site owner        | Receive emails                                   | Respond to customer queries                                                    | The site owner recieves an email directly from the customer with regards to a specific query                                                          |
 |              |                   |                                                  |                                                                                | The user is unable to send the email as there is an error in the submission form                                                                      |
 ### Wireframes:
-<!-- links to wireframe images --> 
+When I started the planning process I drew up wireframes for each page. I started with the home page, for both larger and smaller screens.
+ ![home page](media/home.jpg) ![tablet/mobile views](media/home-sm.jpg)
+ From here I then moved to the products page (and how it would look on smaller screens). 
+ ![products](media'products.jpg) ![smaller screens](media/products-sm.jpg)
+The next logical step was to plan out how the product detail page would look on mobile and tablet. 
+![product detail](media/product-detail.jpg) ![mobile and tablet](media/porduct-detail-sm.jpg)
+The services (including smaller screens) would be similar to the products.
+![services](media/services.jpg) ![smaller screens](media/services-sm.jpg)
+In addition, the service detail pages (on all viewports) were based off of the produsts wireframes.
+![detail](media/services.detail.jpg) ![mobile and tablet](media/service-detail-sm.jpg)
+From here I continued to follow the user process through to the basket and how this would relate to smaller screens.
+![basket](media/basket.jpg) ! [smaller screens](media/basket-sm.jpg)
+From here to the checkout screen on both larger and smaller screens. 
+![larger](media/checkout.jpg) ![smaller](media/checkout-sm.jpg)
+Once I had followed the bacis process throught the website, I then turned to the additional features including how the profiles page would look (and on mobile and tablet). 
+![profile](media/profiles.jpg) ![mobile and tablet](media/profiles-sm.jpg)
+The final page that I needed to think about from a customer point of view was the contact page , (incliding other device sizes).
+![contact page](media/contact.jpg) ![other device sizes](media/contact-sm,jpg)
+ Now that I had looked at the website from a customer's point of view I needed to add an addtional page for the site owner so they could add products/services (on all screen sizes). This changed after feedback, so that only one form is displayed on the screen at any one time, in addition an edit product/sercice page was added, following the same style.
+![add products/services](media/add.jpg) ![all screen sizes](media/add-sm.jpg)
 ## Features
 ### Existing Features
 While some features are specific to a particular page, there are some key features that are consistent across the site. For example the footer, with the copyright information and external link to a social media account. In addition the header of the page follows convention of a logo in the top left corner (also a link back to the home page) and the navigation menu on the right (that collapses down to a hamburger button on smaller viewports). The background image is also consistent across the whole website. This image helps bring attention to the landing page of the site, which is otherwise quite simple, it also provides a preview of the photography available for users to see as soon as they enter the site. A final feature that appears on multiple pages is the use of Django’s messages and Bootstrap’s toasts to provide the user with error, warning, info and success message about their activity on the site. 
@@ -75,26 +94,25 @@ This website has many ways to expand in the future. Features that I would add in
 -	The ability for users to pick they type of frame used on the framed products, and charge according to the type of the frame.
 
 ## Technologies Used
-This project was built using HTML, CSS, JavaScript and Python (using the Django framework). However additional technologies were used to aid the production. 
--   To help with the planning of this project I created wireframes using Balsamiq
--   This website has been hosted buy Heroku
--   I used the Gitpod IDE to write the code in and stored it in GitHub.
--   To simplify the structure of the site I used the Bootstrap CSS library.
--   Bootstap requires jQuery to implement some of the elements. In addition, I used it to help simplify traversing the DOM in my custom JavaScript.
--   Google Fonts were used to help style my website.
--   I also used Font Awesome to add interest and embellishments to the text. 
--   I used Material Design to help pick my colour scheme and find the hex codes for the colours that I used. Not only did it help me find the hex code for the main colour that I wanted, but it also gave the hex codes for a shade darker and lighter so that I could vary the website, while still having that consistency.
--   In order to create the best UX possible I did not want users to have to wait a long time for the browser to load large image files from the repository, or Imgur so I used Tiny PNG to compress my images so the file sizes are smaller and therefore load faster.
--   I converted my logo into a favicon by using xiconeditor.
--   I used Stripe to handle the payments in the orders. 
--   I used Adobe Photoshop to change the colour of the logo, and add copyright information on the images. 
--   On the deployed version of the site, I have used Amazon Web Services’ S3 to host my media and static files. 
--   I wrote the fixtures for the models in JSON, and used [JSON Formatter]( https://jsonformatter.org/) to format and validate the code.
--   Once I had finished coding, I used this Web Formatter to ensure that my code was properly laid out and easier to read, this site also formats CSS and JavaScript.
--   To format my Python code, I used Code Beautify.
--   I used the W3C validators to help test my code. I used the HTML validator and the CSS validator to ensure that both coding languages were correct.
--   To validate my Javascript I used JS Hint.
--   I used PEP8 to validate my Python code.
+This project was built using **HTML**, **CSS**, **JavaScript** and **Python** (using the **Django** framework). However additional technologies were used to aid the production. 
+-   To help with the planning of this project I created wireframes using **[Balsamiq]( https://balsamiq.com/)**
+-   This website has been hosted buy **[Heroku](https://signup.heroku.com/?c=70130000000NeLCAA0&gclid=Cj0KCQiA0MD_BRCTARIsADXoopaEeaocIxNG5UtKhSYyKwifURCrA--M2sjFm3FVTqgklSk-QJCKNPEaAnqSEALw_wcB)**
+-   I used the **[Gitpod](https://gitpod.io/workspaces/)** IDE to write the code in and stored it in **[GitHub](https://github.com/Amyh97)**. 
+-   To simplify the structure of the site I used the **[Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)** CSS library.
+-   Bootstap requires **[jQuery](https://jquery.com/)** to implement some of the elements. In addition, I used it to help simplify traversing the DOM in my custom JavaScript.
+-   **[Google Fonts](https://fonts.google.com/)** were used to help style my website.
+-   I also used **[Font Awesome](https://fontawesome.com/)** to add interest and embellishments to the text. 
+-   I used **[Material Design](https://material.io/resources/color/#!/?view.left=0&view.right=0)** to help pick my colour scheme and find the hex codes for the colours that I used. Not only did it help me find the hex code for the main colour that I wanted, but it also gave the hex codes for a shade darker and lighter so that I could vary the website, while still having that consistency.
+-   In order to create the best UX possible I did not want users to have to wait a long time for the browser to load large image files from **AWS** so I used **[Tiny PNG](https://tinypng.com/)** to compress my images so the file sizes are smaller and therefore load faster. As the original files were so large to begin with this was used multiple times.
+-   I converted my logo into a favicon by using **[xiconeditor](http://www.xiconeditor.com/)**.
+-   I used **[Stripe](https://stripe.com/en-gb)** to handle the payments in the orders. 
+-   I used **[Adobe Photoshop](https://www.adobe.com/uk/products/photoshop.html?gclid=Cj0KCQjwmIuDBhDXARIsAFITC_6Q50I-Hvdo7BC3FAXE1ZlmpmKlU1qe0ed97twH7errjhYrwj5B8H4aAqj9EALw_wcB&mv=search&sdid=LZ32SYVR&ef_id=Cj0KCQjwmIuDBhDXARIsAFITC_6Q50I-Hvdo7BC3FAXE1ZlmpmKlU1qe0ed97twH7errjhYrwj5B8H4aAqj9EALw_wcB:G:s&s_kwcid=AL!3085!3!441664377297!e!!g!!adobe%20photoshop!1422700211!58647953511)** to change the colour of the logo, and add copyright information on the images. 
+-   On the deployed version of the site, I have used Amazon Web Services’ **[S3](https://s3.console.aws.amazon.com/s3/home?region=eu-west-2)** to host my media and static files. 
+-   I wrote the fixtures for the models in JSON, and used **[JSON Formatter]( https://jsonformatter.org/)** to format and validate the code.
+-   Once I had finished coding, I used this **[Web Formatter](https://webformatter.com/)** to ensure that my code was properly laid out and easier to read, this site also formats CSS and JavaScript.
+-   I used the W3C validators to help test my code. I used the **[HTML validator](https://validator.w3.org/)** and the **[CSS validator](https://jigsaw.w3.org/css-validator/)** to ensure that both coding languages were correct.
+-   To validate my Javascript I used **[JS Hint](https://jshint.com/)**.
+-   I used **[PEP8](http://pep8online.com/)** to validate my Python code.
 
 ## Testing
 <!-- add more detail and take bugs/fixes from notes --->
@@ -175,12 +193,13 @@ Before you can deploy the site not in a development environment you will require
 ## Credits
 ### Code
 -	The  code (both Python and HTML) for the page pagination on the products page comes from [Simple is Better than Complex]( https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html) and edited to fit the needs of my site. 
--	The Stripe HTML and JavaScript  and CSS code is an edited version of the base code comes from the Strip documentation.
+-	The Stripe HTML and JavaScript  and CSS code is an edited version of the base code comes from the [Stripe documentation](https://stripe.com/docs).
 -	The contact form was created with the help of [Learn Django]( https://learndjango.com/tutorials/django-email-contact-form)
 -   To speed up the process of converting an Excel spreadsheet to a markdown table I used [ThisDaveJ](https://thisdavej.com/copy-table-in-excel-and-paste-as-a-markdown-table/).
 ### Media
--   The letter A that I used as a logo and favicon came from Needpix. When searching for this image I ensured that the image used I could modify and use on my website.
--   With the exception of the above image, the rest of the images on the site are original photos taken by the photographer stated – Amy Hollis
+-   The letter A that I used as a logo and favicon came from [Needpix]((https://www.needpix.com/photo/1636497/letter-a-the-letter-a-ornament-capital-letter-vintage-font-symbol-alphabet)). When searching for this image I ensured that the image used I could modify and use on my website.
+I used [Am I Responsive](http://ami.responsivedesign.is/) to create the Mockup at the top of the ReadMe file.
+-   With the exception of the above images, the rest of the images on the site are original photos taken by the photographer stated – Amy Hollis
 -   The model used in the urban and rural photoshoot sample image is Lisa from Lisa Hear the Echo. 
 ## Acknowledgements
 -   I was given feedback and advice from Akshat Garg.
