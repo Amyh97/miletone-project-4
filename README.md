@@ -37,7 +37,7 @@ User goals:
 | 5            | Existing customer | See my orders, past and current                  | Track their current order                                                      | The user is able to log into their account and review the status of their order that is updated by the site owner                                     |
 |              |                   |                                                  |                                                                                | The user does not enter the correct credentials and are alerted to this before they are able to log in                                                |
 | 6            | Existing customer | Review my account                                | Update personal information                                                    | The user is able to submit a form with updated information                                                                                            |
-|              |                   |                                                  |                                                                                | The form does not pass validation so is not submitted and these errors are highlihgted to the user                                                    |
+|              |                   |                                                  |                                                                                | The form does not pass validation so is not submitted and these errors are highlighted to the user                                                    |
 | 7            | Site owner        | Review products and services avalible            | Add/ remove and update the pricing of products and services                    | The owner is able to manage products via a form                                                                                                       |
 |              |                   |                                                  |                                                                                | The data entered is not valid so no uopdates are made until this is correct                                                                           |
 | 8            | Site owner        | Be able to see current orders                    | Update the status for the customer                                             | The site owner is able to update the status of the order for the user via a form                                                                      |
@@ -115,7 +115,7 @@ This project was built using **HTML**, **CSS**, **JavaScript** and **Python** (u
 -   I used **[PEP8](http://pep8online.com/)** to validate my Python code.
 
 ## Testing
-<!-- add more detail and take bugs/fixes from notes --->
+Please read [Testing.md](testing.md) to read about the testing process that I undertook while creating this project. 
 ## Deployment
 ### Local
 Before you can run this site on an IDE, you will need:
