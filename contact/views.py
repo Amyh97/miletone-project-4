@@ -15,7 +15,6 @@ def contact(request):
         if form.is_valid():
             subject = form.cleaned_data['subject']
             from_email = form.cleaned_data['from_email']
-            print(from_email)
             message = form.cleaned_data['message']
             photographer_email = settings.DEFAULT_FROM_EMAIL
             try:
